@@ -7,18 +7,45 @@ a {
   color: #00B7FF;
 }
 
-.login-left {
-    margin-left: -50%;
+#login-header {
+  overflow: hidden;
+  position: relative;
 }
 
-.login-left:hover {
-  margin-left: 0;
+.hero-left {
+    left: -50px;
+    width: 100%;
+    transition: 2s ease-in-out forwards;
 }
 
-.login-right {
-  margin-right: -50%;
+.hero-left:hover {
+  left: 0px;
 }
 
-.login-right:hover {
-  margin-right: 0;
+/* .hero-left > .hero-expanded.active {
+  left: 0;
+  transition: 2s ease-in-out forwards;
+} */
+
+.hero-right {
+  right: -50px;
+  width: 50%;
+  transition: 2s ease-in-out forwards;
+}
+
+.hero-right:hover {
+  right: 0px;
+}
+
+/* .hero-right > .hero-expanded.active {
+  right: 0;
+  transition: 2s ease-in-out forwards;
+} */
+
+.hero-expanded {
+  visibility: none;
+}
+
+.hero-expanded.active {
+  visibility: visible;
 }
