@@ -9,38 +9,31 @@ a {
 
 #login-header {
   overflow: hidden;
-  position: relative;
+  text-align: center;
 }
 
 .hero-left {
-    left: -50px;
-    width: 100%;
-    transition: 2s ease-in-out forwards;
+  left: -50px;
+  width: 50%;
+  transition: all 1s ease-in-out;
 }
 
 .hero-left:hover {
-  left: 0px;
+  padding-left: 50px;
+  width: 75%;
 }
 
-/* .hero-left > .hero-expanded.active {
-  left: 0;
-  transition: 2s ease-in-out forwards;
-} */
-
 .hero-right {
+  float: right;
   right: -50px;
   width: 50%;
-  transition: 2s ease-in-out forwards;
+  transition: all 1s ease-in-out;
 }
 
 .hero-right:hover {
-  right: 0px;
+  padding-right: 50px;
+  width: 75%;
 }
-
-/* .hero-right > .hero-expanded.active {
-  right: 0;
-  transition: 2s ease-in-out forwards;
-} */
 
 .hero-expanded {
   visibility: none;
