@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 const db = require('../models');
+let user = {};
 
 
 // GET - Landing page (login)
@@ -37,6 +38,11 @@ router.post('/api/users', function(req, res) {
   });
 });
 
+router.get('/user/:username/newCourse', function(req, res, next) {
+  let username = req.params.username;
+});
+
+
 router.get('/user/:username', function(req, res, next) {
   let userName = req.params.username;
   db.Users.findOne({
@@ -45,10 +51,10 @@ router.get('/user/:username', function(req, res, next) {
     }
   })
   .then((result) => {
-    const currentUserId = result.id;
+    user = result.dataValues;
     return db.Enrollment.findAll({
       where: {
-        userId: currentUserId
+        userId: user.id
       },
       include: [{
           model: db.Courses,
@@ -56,7 +62,6 @@ router.get('/user/:username', function(req, res, next) {
     })
   })
   .then((result) => {
-    console.log(result);
     let courses = [];
     for (let i = 0; i < result.length; i++) {
       courses.push(result[i].dataValues.Course)
@@ -65,8 +70,10 @@ router.get('/user/:username', function(req, res, next) {
   })
   .then((courses) => {
     let object = {
-      courses
+      courses,
+      user
     }
+    console.log(object);
       res.render('../views/partials/profile.handlebars', object)
     })
   .catch(next);
