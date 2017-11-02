@@ -18,12 +18,19 @@ router.get('/courses/new', function(req, res) {
   res.render('../views/partials/newCourse.handlebars')
 })
 
+router.get('/new', function(req, res) {
+  res.render('../views/partials/loading.handlebars')
+})
+
 //Route to create new User
 router.post('/api/users', function(req, res) {
+  console.log(req.body);
   db.Users.create({
-    name:req.body.name,
-    username: req.body.username,
-    password: req.body.password,
+    user_name:req.body.name,
+    user_login: req.body.login,
+    user_email: req.body.email,
+    user_desc: req.body.bio,
+    user_avatar: req.body.avatar_url
   })
   .then(function(result) {
     res.json(result);
@@ -35,7 +42,7 @@ router.get('/user/:username', function(req, res, next) {
   console.log(userName);
   db.Users.findOne({
     where: {
-      name: userName
+      user_login: userName
     }
   })
   .then((result) => {
