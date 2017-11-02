@@ -39,7 +39,6 @@ router.post('/api/users', function(req, res) {
 
 router.get('/user/:username', function(req, res, next) {
   let userName = req.params.username;
-  console.log(userName);
   db.Users.findOne({
     where: {
       user_login: userName
@@ -57,6 +56,7 @@ router.get('/user/:username', function(req, res, next) {
     })
   })
   .then((result) => {
+    console.log(result);
     let courses = [];
     for (let i = 0; i < result.length; i++) {
       courses.push(result[i].dataValues.Course)
@@ -83,7 +83,7 @@ router.post('/api/courses', function(req, res) {
     let courseId = result.id
     db.Users.findOne({
       where: {
-        username: req.body.email
+        user_login: req.body.email
       }
     }).then(function(result) {
       let userId = result.id;
