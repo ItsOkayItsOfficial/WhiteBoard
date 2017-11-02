@@ -13,19 +13,22 @@
                 <li class="nav-item">
                     <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
                 </li>
+                <li class="nav-item">
+                    <a href="/user/" data-target="#edit" data-toggle="tab" class="nav-link">New class</a>
+                </li>
             </ul>
 
             <div class="tab-content py-4">
                 {{!-- Profile Pane --}}
                 <div id="profile" class="tab-pane active">
-                    <h5 class="mb-3"> {{user_name}} </h5>
+                    <h5 class="mb-3"> {{user.user_name}} </h5>
 
                     <div class="row">
                         {{!-- About --}}
                         <div class="col-md-6">
                             <h3>About</h3>
-                            <p> {{user_email}} </p>
-                            <p> {{user_desc}} </p>
+                            <p> {{user.user_email}} </p>
+                            <p> {{user.user_desc}} </p>
                         </div>
 
                         {{!-- Courese Enrolled in List --}}
@@ -34,7 +37,7 @@
                             {{!-- From courses table --}}
                             {{#each courses}}
                             <a href="{{course_url}}">
-                                <p> {{name}} </p>
+                                <p> {{course_name}} </p>
                             </a>
                             <p> {{course_day}} | {{time}} </p>
                             {{/each}}
@@ -93,36 +96,21 @@
                 <div class="tab-pane" id="edit">
                     <form role="form">
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                            <label class="col-lg-3 col-form-label form-control-label">Course Name</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" value="Jane">
+                                <input class="form-control" type="text" value="Course Name">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                            <label class="col-lg-3 col-form-label form-control-label">Course Description</label>
                             <div class="col-lg-9">
                                 <input class="form-control" type="text" value="Bishop">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                            <label class="col-lg-3 col-form-label form-control-label">Course Time</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="email" value="email@gmail.com">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Address</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="" placeholder="Street">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label"></label>
-                            <div class="col-lg-6">
-                                <input class="form-control" type="text" value="" placeholder="City">
-                            </div>
-                            <div class="col-lg-3">
-                                <input class="form-control" type="text" value="" placeholder="State">
+                                <input class="form-control" type="time" value="Course Time">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -144,7 +132,7 @@
                             <label class="col-lg-3 col-form-label form-control-label"></label>
                             <div class="col-lg-9">
                                 <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <input type="button" class="btn btn-primary" value="Save Changes">
+                                <input type="button" class="btn btn-primary" value="Add Course">
                             </div>
                         </div>
                     </form>
@@ -155,7 +143,7 @@
 
         {{!-- Main Pane --}}
         <div id="userInfo" class="col-lg-4 order-lg-1 text-center">
-            <img src=" {{user_avatar}} " class="mx-auto img-fluid img-circle d-block" alt="avatar">
+            <img src=" {{user.user_avatar}} " class="mx-auto img-fluid img-circle d-block" alt="avatar">
             <h6 class="mt-2">Upload a new picture</h6>
             <label class="custom-file">
                 <input type="file" id="file" class="custom-file-input">
