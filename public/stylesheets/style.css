@@ -6,3 +6,19 @@ body {
 a {
   color: #00B7FF;
 }
+
+.login-left {
+    margin-left: -50%;
+}
+
+.login-left:hover {
+  margin-left: 0;
+}
+
+.login-right {
+  margin-right: -50%;
+}
+
+.login-right:hover {
+  margin-right: 0;
+}

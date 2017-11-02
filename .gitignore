@@ -9,6 +9,7 @@
 *.userosscache
 *.sln.docstates
 config/
+partials_test/
 
 # Node & NPM
 node_modules/
