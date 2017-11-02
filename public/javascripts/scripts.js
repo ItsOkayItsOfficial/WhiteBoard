@@ -5,7 +5,10 @@
 * Date: 10/29/17
 * URL:  github.com/itsokayitsofficial/project2
 */
-$(function() { 
+
+
+// Function - GitHub OAuth
+$(function() {
   var authCode = getAuthCode(window.location.href);
 
   function getAuthCode(url){
@@ -17,3 +20,4 @@ $(function() {
   }
 
 });
+

@@ -13,25 +13,30 @@ a {
 }
 
 .hero-left {
+  background-color: red;
+  position: fixed;
   left: -50px;
   width: 50%;
   transition: all 1s ease-in-out;
 }
 
-.hero-left:hover {
-  padding-left: 50px;
-  width: 75%;
-}
-
 .hero-right {
-  float: right;
+  background-color: blue;
+  position: fixed;
   right: -50px;
   width: 50%;
   transition: all 1s ease-in-out;
 }
 
 .hero-right:hover {
+  position: absolute;
   padding-right: 50px;
+  width: 75%;
+}
+
+.hero-left:hover {
+  position: absolute;
+  padding-left: 50px;
   width: 75%;
 }
 
