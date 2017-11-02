@@ -1,0 +1,170 @@
+<div class="container">
+    <div class="row my-2">
+
+        <div class="col-lg-8 order-lg-2">
+            {{!-- Pane tabs --}}
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#messages" data-toggle="tab" class="nav-link">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
+                </li>
+            </ul>
+
+            <div class="tab-content py-4">
+                {{!-- Profile Pane --}}
+                <div id="profile" class="tab-pane active">
+                    <h5 class="mb-3"> {{user_name}} </h5>
+
+                    <div class="row">
+                        {{!-- About --}}
+                        <div class="col-md-6">
+                            <h3>About</h3>
+                            <p> {{user_email}} </p>
+                            <p> {{user_desc}} </p>
+                        </div>
+
+                        {{!-- Courese Enrolled in List --}}
+                        <div id="enrollment" class="col-md-6">
+                            <h3>All Courses</h3>
+                            {{!-- From courses table --}}
+                            {{#each courses}}
+                            <a href="{{course_url}}">
+                                <p> {{name}} </p>
+                            </a>
+                            <p> {{course_day}} | {{time}} </p>
+                            {{/each}}
+                        </div>
+                        {{!-- /#enrollment --}}
+                    </div>
+                    {{!-- /row --}}
+
+                    {{!-- Resources Starred and Added List --}}
+                    <div id="resources" class="col-md-12">
+                        <h5 class="mt-2">
+                            <span class="fa fa-clock-o ion-clock float-right"></span>Starred Resources</h5>
+                        <table class="table table-sm table-hover table-striped">
+                            <tbody>
+                                {{#each resource}}
+                                <tr>
+                                    <td>
+                                        {{!-- From resources table --}}
+                                        <a href="{{resource_url}}">
+                                            {{resource_title}}
+                                        </a>
+                                        <p>
+                                            <a href=' {{session_url}} '> {{session_name}} </a> |
+                                            <a href=' {{subject_url}} '> {{subject}} </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{!-- /#profile --}}
+
+                {{!-- Messages Pane --}}
+                <div id="messages" class="tab-pane">
+                    <div class="alert alert-info alert-dismissable">
+                        <a class="panel-close close" data-dismiss="alert">×</a> This is an
+                        <strong>.alert</strong>. Use this to show important messages to the user.
+                    </div>
+
+                    <table class="table table-hover table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {{!-- MESSAGE --}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                {{!-- /#messages --}}
+
+                {{!-- Edit Pane --}}
+                <div class="tab-pane" id="edit">
+                    <form role="form">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" value="Jane">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" value="Bishop">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="email" value="email@gmail.com">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" value="" placeholder="Street">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" type="text" value="" placeholder="City">
+                            </div>
+                            <div class="col-lg-3">
+                                <input class="form-control" type="text" value="" placeholder="State">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
+                            <div class="col-lg-9">
+                                <select id="user_time_zone" class="form-control" size="0">
+                                    <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                                    <option value="Alaska">(GMT-09:00) Alaska</option>
+                                    <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                                    <option value="Arizona">(GMT-07:00) Arizona</option>
+                                    <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                                    <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                                    <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                                    <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
+                                <input type="reset" class="btn btn-secondary" value="Cancel">
+                                <input type="button" class="btn btn-primary" value="Save Changes">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        {{!-- Main Pane --}}
+        <div id="userInfo" class="col-lg-4 order-lg-1 text-center">
+            <img src=" {{user_avatar}} " class="mx-auto img-fluid img-circle d-block" alt="avatar">
+            <h6 class="mt-2">Upload a new picture</h6>
+            <label class="custom-file">
+                <input type="file" id="file" class="custom-file-input">
+                <span class="custom-file-control">Choose file</span>
+            </label>
+        </div>
+        {{!-- /#userInfo --}}
+
+    </div>
+    {{!-- /.row --}}
+</div>
+{{!-- /.container --}}

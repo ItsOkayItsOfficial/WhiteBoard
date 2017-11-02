@@ -1,0 +1,18 @@
+{{!-- Course detail --}}
+
+<h1>{{course_title}}</h1>
+<p>Welcome to {{title}}</p>
+
+{{!-- Session Cards --}}
+<div class="container">
+<div class="card-deck">
+
+  {{!-- Session Card --}}
+  {{#each session}}
+      {{> session_card}}
+  {{/each}}
+
+</div>
+{{!-- /.card-deck --}}
+</div>
+{{!-- /.container --}}
