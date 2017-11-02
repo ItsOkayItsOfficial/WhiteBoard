@@ -44,6 +44,7 @@ Consolidate student and instructor interaction more centrally to BootcampSpot by
 - <img height="15px" src="https://www.draw.io/images/google-drive-logo.svg"> Google Drive - doc coordination and hosting
 - <img height="15px" src="https://raw.githubusercontent.com/konpa/devicon/master/icons/slack/slack-original.svg?sanitize=true"> Slack Channel (private) - team communication
 - <img height="15px" src="https://www.draw.io/images/apple-touch-icon.png"> Draw io - mockups and wireframes for site, user flow, and database organization
+- <img height="15px" src="https://d2cy1obokpvee9.cloudfront.net/manifest/favicon-196x196.png"> Chatkit - on-site and/or in-app chat
 
 <br>
 <hr>
