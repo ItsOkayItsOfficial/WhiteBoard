@@ -1,9 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
   let sessions = sequelize.define("Sessions", {
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    time: DataTypes.INTEGER,
-    duration: DataTypes.INTEGER
+    session_name: DataTypes.STRING,
+    session_subject: DataTypes.STRING,
+    session_date: DataTypes.STRING,
+    session_desc: DataTypes.STRING,
+    session_time: DataTypes.INTEGER,
+    session_duration: DataTypes.INTEGER
   });
   return sessions;
 };
