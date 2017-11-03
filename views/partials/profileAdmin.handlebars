@@ -1,5 +1,3 @@
-
-
 <div class="container">
     <div class="row my-2">
 
@@ -17,7 +15,9 @@
             <div class="tab-content py-4">
                 {{!-- Profile Pane --}}
                 <div id="profile" class="tab-pane active">
-
+            <a href="#userInfo" data-toggle="collapse">
+                <i class="">X</i>
+            </a>
                     <div class="row">
                         {{!-- About --}}
                         <div class="col-md-6">
@@ -29,8 +29,7 @@
                         {{!-- Courese Enrolled in List --}}
                         <div id="enrollment" class="col-md-6">
                             <h3>All Courses</h3>
-                            {{!-- From courses table --}}
-                            {{#each courses}}
+                            {{!-- From courses table --}} {{#each courses}}
                             <a href="{{course_url}}">
                                 <p> {{course_name}} </p>
                             </a>
@@ -40,9 +39,7 @@
                         </div>
                         {{!-- /#enrollment --}}
                     </div>
-                    {{!-- /row --}}
-
-                    {{!-- Resources Starred and Added List --}}
+                    {{!-- /row --}} {{!-- Resources Starred and Added List --}}
                     <div id="resources" class="col-md-12">
                         <h5 class="mt-2">
                             <span class="fa fa-clock-o ion-clock float-right"></span>Starred Resources</h5>
@@ -66,9 +63,7 @@
                         </table>
                     </div>
                 </div>
-                {{!-- /#profile --}}
-
-                {{!-- Messages Pane --}}
+                {{!-- /#profile --}} {{!-- Messages Pane --}}
                 <div id="messages" class="tab-pane">
                     <div class="alert alert-info alert-dismissable">
                         <a class="panel-close close" data-dismiss="alert">×</a> This is an
@@ -86,9 +81,7 @@
                     </table>
 
                 </div>
-                {{!-- /#messages --}}
-
-                {{!-- Edit Pane --}}
+                {{!-- /#messages --}} {{!-- Edit Pane --}}
                 <div class="tab-pane" id="edit">
                     <form role="form">
                         <div class="form-group row">
@@ -150,13 +143,68 @@
         </div>
 
         {{!-- Main Pane --}}
-        <div id="userInfo" class="col-lg-4 order-lg-1 text-center">
-            <img src=" {{user.user_avatar}} " class="mx-auto img-fluid img-circle d-block" alt="avatar">
+        <div id="userInfo" class="col-lg-3 order-lg-1 text-center">
+
+        <div class="row text-center">
+            <img id="userAvatar" src=" {{user.user_avatar}} " class="rounded-circle" alt="">
             <h5 class="mb-3"> {{user.user_name}} </h5>
+        </div>
+
+        <div class="list-group panel">
+
+                <a href="#menu1" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+                    <i class="fa fa-dashboard"></i>
+                    <span class="hidden-sm-down">Item 1</span>
+                </a>
+
+                <div id="menu1" class="collapse">
+                    <a href="#menu1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 1 </a>
+
+                    <div class="collapse" id="menu1sub1">
+                        <a href="#" class="list-group-item" data-parent="#menu1sub1">Subitem 1 a</a>
+                        <a href="#" class="list-group-item" data-parent="#menu1sub1">Subitem 2 b</a>
+                        <a href="#menu1sub1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 3 c </a>
+                        <div class="collapse" id="menu1sub1sub1">
+                            <a href="#" class="list-group-item" data-parent="#menu1sub1sub1">Subitem 3 c.1</a>
+                            <a href="#" class="list-group-item" data-parent="#menu1sub1sub1">Subitem 3 c.2</a>
+                        </div>
+                        <a href="#" class="list-group-item" data-parent="#menu1sub1">Subitem 4 d</a>
+                        <a href="#menu1sub1sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 5 e </a>
+                        <div class="collapse" id="menu1sub1sub2">
+                            <a href="#" class="list-group-item" data-parent="#menu1sub1sub2">Subitem 5 e.1</a>
+                            <a href="#" class="list-group-item" data-parent="#menu1sub1sub2">Subitem 5 e.2</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 2</a>
+                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 3</a>
+                </div>
+
+                <a href="#" class="list-group-item collapsed" data-parent="#userInfo">
+                    <i class="fa fa-film"></i>
+                    <span class="hidden-sm-down">Item 2</span>
+                </a>
+
+                <a href="#menu3" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+                    <i class="fa fa-book"></i>
+                    <span class="hidden-sm-down">Item 3 </span>
+                </a>
+                <div class="collapse" id="menu3">
+                    <a href="#" class="list-group-item" data-parent="#menu3">3.1</a>
+                    <a href="#menu3sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">3.2 </a>
+                    <div class="collapse" id="menu3sub2">
+                        <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 a</a>
+                        <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 b</a>
+                        <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 c</a>
+                    </div>
+                    <a href="#" class="list-group-item" data-parent="#menu3">3.3</a>
+                </div>
+
+            </div>
         </div>
         {{!-- /#userInfo --}}
 
+        </div>
+        {{!-- /.row --}}
     </div>
-    {{!-- /.row --}}
-</div>
-{{!-- /.container --}}
+    {{!-- /.container --}}

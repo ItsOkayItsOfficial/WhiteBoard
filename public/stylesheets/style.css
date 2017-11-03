@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 50px 0 50px 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -43,7 +43,7 @@ a {
   width: 75%;
 }
 
-.hero-left:hover + .hero-right {
+.hero-left:hover+.hero-right {
   width: 25%;
 }
 
@@ -58,4 +58,114 @@ a {
 
 .hero-expanded.active {
   visibility: visible;
+}
+
+#userAvatar {
+  width: 150px;
+  background-color: white;
+}
+
+#userInfo,
+.list-group-item {
+  border-radius: 0;
+  background-color: #333;
+  color: #ccc;
+  border-left: 0;
+  border-right: 0;
+  border-color: #2c2c2c;
+  white-space: nowrap;
+}
+
+/* highlight active menu */
+
+#userInfo .list-group-item:not(.collapsed) {
+  background-color: #222;
+}
+
+/* closed state */
+
+#userInfo .list-group .list-group-item[aria-expanded="false"]::after {
+  content: " \f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 5px;
+}
+
+
+/* open state */
+
+#userInfo .list-group .list-group-item[aria-expanded="true"] {
+  background-color: #222;
+}
+
+#userInfo .list-group .list-group-item[aria-expanded="true"]::after {
+  content: " \f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 5px;
+}
+
+
+/* level 1*/
+
+#userInfo .list-group .collapse .list-group-item {
+  padding-left: 20px;
+}
+
+
+/* level 2*/
+
+#userInfo .list-group .collapse>.collapse .list-group-item {
+  padding-left: 30px;
+}
+
+
+/* level 3*/
+
+#userInfo .list-group .collapse>.collapse>.collapse .list-group-item {
+  padding-left: 40px;
+}
+
+@media (max-width:48em) {
+  /* overlay sub levels on small screens */
+  #userInfo .list-group .collapse.in,
+  #userInfo .list-group .collapsing {
+    position: absolute;
+    z-index: 1;
+    width: 190px;
+  }
+  #userInfo .list-group>.list-group-item {
+    text-align: center;
+    padding: .75rem .5rem;
+  }
+  /* hide caret icons of top level when collapsed */
+  #userInfo .list-group>.list-group-item[aria-expanded="true"]::after,
+  #userInfo .list-group>.list-group-item[aria-expanded="false"]::after {
+    display: none;
+  }
+}
+
+
+/* change transition animation to width when entire userInfo is toggled */
+
+#userInfo.collapse {
+  -webkit-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  transition-timing-function: ease;
+  -webkit-transition-duration: .2s;
+  -o-transition-duration: .2s;
+  transition-duration: .2s;
+}
+
+#userInfo.collapsing {
+  opacity: 0.8;
+  width: 0;
+  -webkit-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  -webkit-transition-property: width;
+  -o-transition-property: width;
+  transition-property: width;
 }

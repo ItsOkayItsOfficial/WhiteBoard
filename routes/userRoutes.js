@@ -43,7 +43,7 @@ router.post('/api/users', function(req, res) {
         user_avatar: req.body.avatar_url
       })
     }
-    // if the user exists, send back the user login information 
+    // if the user exists, send back the user login information
     if (result[0].dataValues.id) {
       return result[0].dataValues.user_login;
     }
@@ -94,7 +94,7 @@ router.get('/user/:username', function(req, res, next) {
       courses,
       user
     }
-      res.render('../views/partials/profile.handlebars', object)
+      res.render('../views/partials/profileAdmin.handlebars', object)
     })
   .catch(next);
 });
@@ -110,14 +110,14 @@ router.post('/api/courses', function(req, res) {
   .then((result) => {
     //finds course ID
     let courseId = result.dataValues.id;
-    //finds user that created the course 
+    //finds user that created the course
     return db.Users.findOne({
       where: {
         user_login: req.body.instructor
       }
     })
     .then((result) => {
-      //stores the user that created the course 
+      //stores the user that created the course
       let userId = result.id;
       //links the user and the course into the enrollment table
       return db.Enrollment.create({
