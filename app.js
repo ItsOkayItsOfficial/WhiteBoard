@@ -25,9 +25,6 @@ app.set("view engine", "handlebars")
 
 // Set Handlebars.
 
-
-
-
 app.engine("handlebars", exphbs({
   defaultLayout: "main"
 }));
