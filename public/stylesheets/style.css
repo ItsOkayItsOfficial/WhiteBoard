@@ -28,20 +28,22 @@ a {
   transition: all 1s ease-in-out;
 }
 
-.hero-right:hover {
-  position: absolute;
-  padding-right: 50px;
-  width: 75%;
-}
-
 .hero-left:hover {
-  position: absolute;
   padding-left: 50px;
   width: 75%;
 }
 
+.hero-left:hover + .hero-right {
+  width: 25%;
+}
+
+.hero-right:hover {
+  padding-right: 50px;
+  width: 75%;
+}
+
 .hero-expanded {
-  visibility: none;
+  visibility: hidden;
 }
 
 .hero-expanded.active {
