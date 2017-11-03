@@ -39,7 +39,8 @@
                             <a href="{{course_url}}">
                                 <p> {{course_name}} </p>
                             </a>
-                            <p> {{course_day}} | {{time}} </p>
+                            <p> {{course_day}} | {{course_time}} </p>
+                            <p> {{course_desc}}</p>
                             {{/each}}
                         </div>
                         {{!-- /#enrollment --}}
@@ -98,19 +99,19 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Course Name</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" value="Course Name">
+                                <input class="form-control" type="text" id='inputCourseName' placeholder="Course Name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Course Description</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" value="Bishop">
+                                <input class="form-control" type="text" id='inputCourseDescription' placeholder="Bishop">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Course Time</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="time" value="Course Time">
+                                <input class="form-control" type="time" id='inputCourseTime' placeholder="Course Time">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -132,7 +133,7 @@
                             <label class="col-lg-3 col-form-label form-control-label"></label>
                             <div class="col-lg-9">
                                 <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <input type="button" class="btn btn-primary" value="Add Course">
+                                <input type="button" class="btn btn-primary" id='submitNewCourse' value="Add Course">
                             </div>
                         </div>
                     </form>

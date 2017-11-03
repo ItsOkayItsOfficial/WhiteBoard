@@ -4,7 +4,6 @@ var router = express.Router();
 const db = require('../models');
 let user = {};
 
-
 // GET - Landing page (login)
 router.get('/', function(request, response, next) {
   response.render('../views/partials/login');
@@ -15,17 +14,12 @@ router.get('/user/new', function(req, res) {
   res.render('../views/partials/newUser.handlebars')
 })
 
-router.get('/courses/new', function(req, res) {
-  res.render('../views/partials/newCourse.handlebars')
-})
-
 router.get('/new', function(req, res) {
   res.render('../views/partials/loading.handlebars')
 })
 
 //Route to create new User
 router.post('/api/users', function(req, res) {
-  console.log(req.body);
   db.Users.create({
     user_name:req.body.name,
     user_login: req.body.login,
@@ -41,6 +35,7 @@ router.post('/api/users', function(req, res) {
 router.get('/user/:username/newCourse', function(req, res, next) {
   let username = req.params.username;
 });
+
 
 
 router.get('/user/:username', function(req, res, next) {
@@ -73,7 +68,6 @@ router.get('/user/:username', function(req, res, next) {
       courses,
       user
     }
-    console.log(object);
       res.render('../views/partials/profile.handlebars', object)
     })
   .catch(next);
@@ -81,16 +75,16 @@ router.get('/user/:username', function(req, res, next) {
 
 router.post('/api/courses', function(req, res) {
   db.Courses.create({
-    instructor: req.body.email,
-    name:req.body.name,
-    description: req.body.description,
-    time: req.body.time,
+    course_instructor: req.body.instructor,
+    course_name:req.body.name,
+    course_desc: req.body.description,
+    course_time: req.body.time,
   })
   .then(function(result) {
-    let courseId = result.id
+    let courseId = result.dataValues.id;
     db.Users.findOne({
       where: {
-        user_login: req.body.email
+        user_login: req.body.instructor
       }
     }).then(function(result) {
       let userId = result.id;
