@@ -7,14 +7,24 @@ a {
   color: #00B7FF;
 }
 
+.card {
+  transition: all .2s ease-in-out;
+}
+
+.card:hover {
+  transform: translate(0px, -5px);
+}
+
 #login-header {
+  height: 75vh;
+  margin: -50px -50px 0 -50px;
   overflow: hidden;
   text-align: center;
 }
 
 .hero-left {
   background-color: red;
-  position: fixed;
+  height: 75vh;
   left: -50px;
   width: 50%;
   transition: all 1s ease-in-out;
@@ -22,7 +32,7 @@ a {
 
 .hero-right {
   background-color: blue;
-  position: fixed;
+  height: 75vh;
   right: -50px;
   width: 50%;
   transition: all 1s ease-in-out;
