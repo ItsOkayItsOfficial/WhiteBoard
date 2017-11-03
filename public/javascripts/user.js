@@ -93,13 +93,10 @@ if ($('#inputCourseFreq').val() === '3') {
     }
   }
 }
-
-
 for (let i = 0; i < sessionDates.length; i++) {
   sessionDates[i] = (sessionDates[i]/1000);
   sessionDates[i] = moment.unix(sessionDates[i]).format('MM/DD/YY h:mmA')
 }
-
 
   e.preventDefault();
   let newCourse = {
@@ -120,6 +117,12 @@ for (let i = 0; i < sessionDates.length; i++) {
       window.location.href = currentURL + '/user/' + usersLocalStorage.login;
     }
   );
-});
+  });
 
+
+
+  $('#selectedCourse').on('click', ((e) => {
+      e.preventDefault();
+      console.log('Hi');
+  }))
 });
