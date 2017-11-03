@@ -4,6 +4,8 @@ var router = express.Router();
 const db = require('../models');
 let user = {};
 
+
+
 // GET - Landing page (login)
 router.get('/', function(request, response, next) {
   response.render('../views/partials/login');
@@ -21,8 +23,9 @@ router.get('/new', function(req, res) {
   res.render('../views/partials/login.handlebars', newObject);
 })
 
-//Creates new user after they are authenticated
+//Route users are sent to for user creation
 router.post('/api/users', function(req, res) {
+  //query to see if user exists
   db.Users.findAll({
     where: {
       user_login: req.body.login
@@ -55,16 +58,19 @@ router.get('/user/:username/newCourse', function(req, res, next) {
 });
 
 
-
+//gets users profile page
 router.get('/user/:username', function(req, res, next) {
   let userName = req.params.username;
+  //finds user where username matches url parameter
   db.Users.findOne({
     where: {
       user_login: userName
     }
   })
   .then((result) => {
+    //sets user to the user that logged in
     user = result.dataValues;
+    //returns the logged in users courses
     return db.Enrollment.findAll({
       where: {
         userId: user.id
@@ -75,6 +81,7 @@ router.get('/user/:username', function(req, res, next) {
     })
   })
   .then((result) => {
+    //loops through the query result to place each courses information into the courses array
     let courses = [];
     for (let i = 0; i < result.length; i++) {
       courses.push(result[i].dataValues.Course)
@@ -82,6 +89,7 @@ router.get('/user/:username', function(req, res, next) {
     return courses;
   })
   .then((courses) => {
+    //sends the object with the courses and user information to handelbars to render the profile page
     let object = {
       courses,
       user
@@ -91,6 +99,7 @@ router.get('/user/:username', function(req, res, next) {
   .catch(next);
 });
 
+//Accepts post when user creates a course
 router.post('/api/courses', function(req, res) {
   db.Courses.create({
     course_instructor: req.body.instructor,
@@ -98,33 +107,28 @@ router.post('/api/courses', function(req, res) {
     course_desc: req.body.description,
     course_time: req.body.time,
   })
-  .then(function(result) {
+  .then((result) => {
+    //finds course ID
     let courseId = result.dataValues.id;
-    db.Users.findOne({
+    //finds user that created the course 
+    return db.Users.findOne({
       where: {
         user_login: req.body.instructor
       }
-    }).then(function(result) {
+    })
+    .then((result) => {
+      //stores the user that created the course 
       let userId = result.id;
-      db.Enrollment.create({
+      //links the user and the course into the enrollment table
+      return db.Enrollment.create({
         CourseId: courseId,
         UserId: userId
       })
     })
+    .then((result) => {
+      res.json(result);
+    })
   });
 });
-
-
-router.get('/courses/all', function(res, res) {
-  db.Courses.findAll({
-  })
-  .then(function(result) {
-    let courseObject = {
-      courses: result
-    }
-    res.render('../views/partials/profile.handlebars', courseObject)
-  })
-})
-
 
 module.exports = router;
