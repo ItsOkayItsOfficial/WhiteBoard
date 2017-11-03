@@ -3,6 +3,9 @@ const currentURL = window.location.origin;
 let clientId = '51ec5a185abed21675e6';
 let clientSecret = '38e3b69bbddbd7d9bc89d44935615578f96ff4cd';
 let redirectUri = 'http://127.0.0.1:3000/new';
+let usersLocalStorage = JSON.parse(localStorage.getItem('User'));
+console.log(usersLocalStorage);
+
 
 //Redirects user to github to be authenticated
 function gitHubRedirect () {
@@ -56,7 +59,7 @@ $('#authenticatedUser').on('click', function(event) {
 $('#submitNewCourse').on('click', function(e) {
   e.preventDefault();
   let newCourse = {
-    instructor: 'wcrozier12',
+    instructor: usersLocalStorage.login,
     name: $('#inputCourseName').val(),
     description: $('#inputCourseDescription').val(),
     time: $('#inputCourseTime').val()
@@ -66,7 +69,7 @@ $('#submitNewCourse').on('click', function(e) {
     data: newCourse
   }).then(
     function(data) {
-      res.redirect('./')
+      window.location.href = currentURL + '/user/' + usersLocalStorage.login;
     }
   );
 })
