@@ -81,6 +81,21 @@ a {
 #userInfo {
   padding: 10px;
   margin: -50px 0 -50px -40px;
+  transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+}
+
+#userInfo > #slide {
+    height: 100%;
+    width: 10px;
+    float: right;
+    margin: -10px;
+}
+
+#userInfo:hover > #slide {
+  background-color: #222;
 }
 
 #userInfo,

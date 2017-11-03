@@ -128,10 +128,10 @@
             </div>
         </div>
 
-  <a href="#userInfo" aria-expanded="false" aria-controls="userInfo">X</a>
-
         {{!-- Main Pane --}}
-        <div id="userInfo" class="col-lg-3 order-lg-1 text-center slide">
+        <div id="userInfo" class="col-lg-3 order-lg-1 text-center">
+
+              <a id="slide" aria-expanded="true" aria-controls="userInfo"></a>
 
             <div class="col-lg-12">
                 <img id="userAvatar" src=" {{user.user_avatar}} " class="rounded-circle" alt="">
@@ -177,3 +177,9 @@
     {{!-- /.row --}}
 </div>
 {{!-- /.container --}}
+
+<script>
+    $('#slide').on('click', function(){
+        $('#userInfo').css('width', '30px');
+    });
+</script>
