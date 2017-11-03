@@ -74,6 +74,7 @@ let numberOfSessions = (courseLength/msBetweenSessions);
 console.log(numberOfSessions)
 let sessionDates = [];
 
+
 //MWF Class option class starts on monday
 if ($('#inputCourseFreq').val() === '3') {
   //Class every 2 days m/w/f
@@ -94,29 +95,31 @@ if ($('#inputCourseFreq').val() === '3') {
 }
 
 
+for (let i = 0; i < sessionDates.length; i++) {
+  sessionDates[i] = (sessionDates[i]/1000);
+  sessionDates[i] = moment.unix(sessionDates[i]).format('MM/DD/YY h:mmA')
+}
 
-console.log(sessionDates);
 
+  e.preventDefault();
+  let newCourse = {
+    instructor: usersLocalStorage.login,
+    name: $('#inputCourseName').val(),
+    description: $('#inputCourseDescription').val(),
+    time: $('#inputCourseTime').val(),
+    sessions: sessionDates
+  };
 
-//   e.preventDefault();
-//   let newCourse = {
-//     instructor: usersLocalStorage.login,
-//     name: $('#inputCourseName').val(),
-//     description: $('#inputCourseDescription').val(),
-//     time: $('#inputCourseTime').val()
-//   }
-
-//   //posts new course to server
-//   $.ajax("/api/courses", {
-//     type: "POST",
-//     data: newCourse
-//   }).then(
-//     //after response, sends user to profile page to see all courses
-//     function(data) {
-//       window.location.href = currentURL + '/user/' + usersLocalStorage.login;
-//     }
-//   );
-// })
-
+  //posts new course to server
+  $.ajax("/api/courses", {
+    type: "POST",
+    data: newCourse
+  }).then(
+    //after response, sends user to profile page to see all courses
+    function(data) {
+      window.location.href = currentURL + '/user/' + usersLocalStorage.login;
+    }
+  );
 });
+
 });

@@ -94,7 +94,7 @@ router.get('/user/:username', function(req, res, next) {
       courses,
       user
     }
-      res.render('../views/partials/profileAdmin.handlebars', object)
+      res.render('../views/partials/profile.handlebars', object)
     })
   .catch(next);
 });
@@ -126,9 +126,17 @@ router.post('/api/courses', function(req, res) {
       })
     })
     .then((result) => {
+      console.log(result.dataValues.CourseId);
+      for (let i = 0; i < req.body.sessions.length; i ++) {
+        db.Sessions.create({
+          session_date: req.body.sessions[i],
+          CourseId: result.dataValues.CourseId
+        })
+      }
       //this result gives courseID, WE WILL INSERT SESSIONS HERE USING COURSEID AS A FOREIGN KEY
-      console.log(result);
-      res.json(result);
+    })
+    .then((result) => {
+      res.json('Successfully created course');
     })
   });
 });

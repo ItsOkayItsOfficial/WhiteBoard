@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
     session_time: DataTypes.INTEGER,
     session_duration: DataTypes.INTEGER
   });
+
+  sessions.associate = function(models) {
+    sessions.belongsTo(models.Courses);
+  }
   return sessions;
 };
 

@@ -31,7 +31,7 @@
                             <h3>All Courses</h3>
                             {{!-- From courses table --}}
                             {{#each courses}}
-                            <a href="{{course_url}}">
+                            <a id="selectedCourse" data-id="{{this.id}}" href="{{course_url}}">
                                 <p> {{course_name}} </p>
                             </a>
                             <p> {{course_day}} | {{course_time}} </p>
