@@ -7,6 +7,7 @@ let usersLocalStorage = JSON.parse(localStorage.getItem('User'));
 console.log(usersLocalStorage);
 
 
+
 //Redirects user to github to be authenticated
 function gitHubRedirect () {
     window.location.replace('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&state=1234');
@@ -58,24 +59,64 @@ $('#authenticatedUser').on('click', function(event) {
 
 //When user submits a new course
 $('#submitNewCourse').on('click', function(e) {
-  e.preventDefault();
-  let newCourse = {
-    instructor: usersLocalStorage.login,
-    name: $('#inputCourseName').val(),
-    description: $('#inputCourseDescription').val(),
-    time: $('#inputCourseTime').val()
-  }
+const weekInMiliseconds = 604800000;
+const dayInMiliseconds = 86400000;
+//All dates in unix (ms)
+let startDate = moment($('#inputStartDate').val() + " " + $('#inputCourseTime').val()).valueOf();
 
-  //posts new course to server
-  $.ajax("/api/courses", {
-    type: "POST",
-    data: newCourse
-  }).then(
-    //after response, sends user to profile page to see all courses
-    function(data) {
-      window.location.href = currentURL + '/user/' + usersLocalStorage.login;
+let endDate = moment($('#inputEndDate').val() + " " + $('#inputCourseTime').val()).valueOf();
+let courseLength = endDate - startDate;
+let numberOfWeeks = courseLength/weekInMiliseconds;
+
+let sessionFrequency = $('#inputCourseFreq').val();
+let msBetweenSessions = (weekInMiliseconds/sessionFrequency);
+let numberOfSessions = (courseLength/msBetweenSessions);
+console.log(numberOfSessions)
+let sessionDates = [];
+
+//MWF Class option class starts on monday
+if ($('#inputCourseFreq').val() === '3') {
+  //Class every 2 days m/w/f
+  let sessionInterval = dayInMiliseconds * 2;
+  for (let i =0; i < numberOfWeeks; i++) {
+    for (let j = 0; j < sessionFrequency; j ++) {
+      sessionDates.push(startDate);
+
+      if (sessionDates.length > 0 && sessionDates.length  % 3 == 0) {
+        sessionInterval = dayInMiliseconds * 3;
+        startDate += sessionInterval;
+      }
+      else {
+        startDate += sessionInterval;
+      }
     }
-  );
-})
+  }
+}
 
+
+
+console.log(sessionDates);
+
+
+//   e.preventDefault();
+//   let newCourse = {
+//     instructor: usersLocalStorage.login,
+//     name: $('#inputCourseName').val(),
+//     description: $('#inputCourseDescription').val(),
+//     time: $('#inputCourseTime').val()
+//   }
+
+//   //posts new course to server
+//   $.ajax("/api/courses", {
+//     type: "POST",
+//     data: newCourse
+//   }).then(
+//     //after response, sends user to profile page to see all courses
+//     function(data) {
+//       window.location.href = currentURL + '/user/' + usersLocalStorage.login;
+//     }
+//   );
+// })
+
+});
 });
