@@ -21,18 +21,33 @@ router.get('/new', function(req, res) {
   res.render('../views/partials/login.handlebars', newObject);
 })
 
-//Route to create new User
+//Creates new user after they are authenticated
 router.post('/api/users', function(req, res) {
-  db.Users.create({
-    user_name:req.body.name,
-    user_login: req.body.login,
-    user_email: req.body.email,
-    user_desc: req.body.bio,
-    user_avatar: req.body.avatar_url
+  db.Users.findAll({
+    where: {
+      user_login: req.body.login
+    }
   })
-  .then(function(result) {
+  .then((result) => {
+    console.log(result);
+    //if the user does not exist, create the user in the database
+    if (result[0] === undefined) {
+      return db.Users.create({
+        user_name:req.body.name,
+        user_login: req.body.login,
+        user_email: req.body.email,
+        user_desc: req.body.bio,
+        user_avatar: req.body.avatar_url
+      })
+    }
+    // if the user exists, send back the user login information 
+    if (result[0].dataValues.id) {
+      return result[0].dataValues.user_login;
+    }
+  })
+  .then((result) => {
     res.json(result);
-  });
+  })
 });
 
 router.get('/user/:username/newCourse', function(req, res, next) {
