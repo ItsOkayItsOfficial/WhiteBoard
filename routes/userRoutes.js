@@ -126,6 +126,8 @@ router.post('/api/courses', function(req, res) {
       })
     })
     .then((result) => {
+      //this result gives courseID, WE WILL INSERT SESSIONS HERE USING COURSEID AS A FOREIGN KEY
+      console.log(result);
       res.json(result);
     })
   });

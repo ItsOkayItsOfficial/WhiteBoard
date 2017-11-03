@@ -56,6 +56,7 @@ $('#authenticatedUser').on('click', function(event) {
   userAuthentication();
 });
 
+//When user submits a new course
 $('#submitNewCourse').on('click', function(e) {
   e.preventDefault();
   let newCourse = {
@@ -64,10 +65,13 @@ $('#submitNewCourse').on('click', function(e) {
     description: $('#inputCourseDescription').val(),
     time: $('#inputCourseTime').val()
   }
+
+  //posts new course to server
   $.ajax("/api/courses", {
     type: "POST",
     data: newCourse
   }).then(
+    //after response, sends user to profile page to see all courses
     function(data) {
       window.location.href = currentURL + '/user/' + usersLocalStorage.login;
     }
