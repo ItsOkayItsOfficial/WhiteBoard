@@ -15,7 +15,10 @@ router.get('/user/new', function(req, res) {
 })
 
 router.get('/new', function(req, res) {
-  res.render('../views/partials/loading.handlebars')
+  let newObject = {
+    message: 'Authentication complete, click sign in'
+  }
+  res.render('../views/partials/login.handlebars', newObject);
 })
 
 //Route to create new User
