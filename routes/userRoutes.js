@@ -106,7 +106,7 @@ router.get('/user/:username', function(req, res, next) {
       courses,
       user
     }
-      res.render('../views/partials/profile.handlebars', object)
+      res.render('../views/partials/profileAdmin.handlebars', object)
     })
   .catch(next);
 });

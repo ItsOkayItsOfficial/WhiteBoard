@@ -61,9 +61,6 @@
             <div class="tab-content py-4">
                 {{!-- Profile Pane --}}
                 <div id="profile" class="tab-pane active">
-                    <a href="#userInfo" data-toggle="collapse">
-                        <i class="">X</i>
-                    </a>
 
                     <div class="row">
                         {{!-- About --}}
@@ -86,10 +83,14 @@
                         </div>
                         {{!-- /#enrollment --}}
                     </div>
-                    {{!-- /row --}} {{!-- Resources Starred and Added List --}}
+                    {{!-- /row --}}
+
+                    {{!-- Resources Starred and Added List --}}
                     <div id="resources" class="col-md-12">
                         <h5 class="mt-2">
                             <span class="fa fa-clock-o ion-clock float-right"></span>Starred Resources</h5>
+
+
                         <table class="table table-sm table-hover table-striped">
                             <tbody>
                                 {{#each resource}}
@@ -110,7 +111,9 @@
                         </table>
                     </div>
                 </div>
-                {{!-- /#profile --}} {{!-- Messages Pane --}}
+                {{!-- /#profile --}}
+
+                {{!-- Messages Pane --}}
                 <div id="messages" class="tab-pane">
                     <div class="alert alert-info alert-dismissable">
                         <a class="panel-close close" data-dismiss="alert">×</a> This is an
@@ -128,7 +131,9 @@
                     </table>
 
                 </div>
-                {{!-- /#messages --}} {{!-- Edit Pane --}}
+                {{!-- /#messages --}}
+
+                {{!-- Edit Pane --}}
                 <div class="tab-pane" id="edit">
                     <form role="form">
                         <div class="form-group row">
