@@ -36,7 +36,7 @@ router.get('/courses/:courseId/sessions', function(req, res) {
       let hbsObject = {
         sessions
       };
-      res.render('../views/partials/session_card.handlebars', hbsObject)
+      res.render('../views/partials/session.handlebars', hbsObject)
     })
 })
 
@@ -69,11 +69,6 @@ router.post('/api/users', function(req, res) {
     res.json(result);
   })
 });
-
-router.get('/user/:username/newCourse', function(req, res, next) {
-  let username = req.params.username;
-});
-
 
 //gets users profile page
 router.get('/user/:username', function(req, res, next) {
