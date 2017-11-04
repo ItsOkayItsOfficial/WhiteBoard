@@ -114,7 +114,6 @@ $('#submitNewCourse').on('click', function(e) {
     sessionDates[i] = (sessionDates[i]/1000);
     sessionDates[i] = moment.unix(sessionDates[i]).format('MM/DD/YY h:mmA')
   }
-console.log(sessionDates);
     e.preventDefault();
     let newCourse = {
       instructor: usersLocalStorage.login,
@@ -144,4 +143,30 @@ console.log(sessionDates);
       console.log(courseId);
       window.location.href = currentURL + '/courses/' + courseId + '/sessions'
   }))
+
+  $('.resourceSubmit').on('click', function(e) {
+    e.preventDefault();
+    let sessionId = $(this).attr('id');
+    let newResource = {
+      courseId: $('#CourseId').val(),
+      userName: usersLocalStorage.login,
+      resourceUrl: $('.resourceUrl').val(),
+      resourceDesc: $('.resourceDesc').val(),
+      sessionId
+    }
+
+    
+    $.post('/api/sessions/resources', newResource, ((data) => {
+      console.log(data);
+    }))
+
+  })
+
+  $('.sessionCard').on('click', function(e) {
+    let courseId = $('#CourseId').val();
+
+    let sessionId = $(this).children()[0].id;
+    window.location.href = currentURL + '/courses/' + courseId + '/sessions/' + sessionId;
+  })
+
 });

@@ -33,6 +33,7 @@ router.get('/courses/:courseId/sessions', function(req, res) {
     .then((sessions) => {
       console.log(sessions);
       let hbsObject = {
+        CourseId,
         sessions
       };
       res.render('../views/partials/session_card.handlebars', hbsObject)
@@ -151,5 +152,33 @@ router.post('/api/courses', function(req, res) {
     })
   });
 });
+
+
+router.post('/api/sessions/resources', function(req, res) {
+    return db.Sessions.findAll({
+      where: {
+        CourseId: req.body.courseId
+      }
+    })
+    .then((result) => {
+      return db.Users.findOne({
+        where: {
+          user_login: req.body.userName
+        }
+      })
+    })
+    .then((result) => {
+      let userId = result.dataValues.id;
+      return db.Resources.create({
+        UserId: userId,
+        SessionId: req.body.sessionId,
+        resource_url: req.body.resourceUrl,
+        resource_desc: req.body.resourceDesc
+      })
+    })
+    .then((result) => {
+      res.json('created resource');
+    })
+})
 
 module.exports = router;

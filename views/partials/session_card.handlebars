@@ -1,7 +1,8 @@
 {{!-- Session Card --}}
+<h1 id="CourseId">{{CourseId}}</h1>
 {{#each sessions}}
-    <div class="card" style="width: 20rem;" data-toggle="modal" data-target="#{{id}}">
-        <div class="card-header">
+    <div class="card sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#{{id}}">
+        <div class="card-header" id ={{id}}>
             <img class="icon" src=' {{subject_avatar}} '> {{subject}}
             <small class="text-muted" style="float:right">Attendance {{attendance}} </small>
         </div>
@@ -37,9 +38,10 @@
                             <form>
                               <div class="form-group">
                                 <label for="resourceText">Resource</label>
-                                <input type="text" class="form-control" id="resourceText" placeholder="Resource">
+                                <input type="text" class="form-control resourceUrl"  placeholder="Resource URL">
+                                <input type="text" class="form-control resourceDesc"  placeholder="Resource Description">
                               </div>
-                              <button type="submit" id="resourceSubmit" class="btn btn-primary">Submit</button>
+                              <button type="submit" id = "{{id}}"class="resourceSubmit" class="btn btn-primary">Submit</button>
                             </form>
                             <div class="col-md-4">.col-md-4</div>
                             <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
