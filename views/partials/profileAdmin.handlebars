@@ -1,7 +1,53 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-lg-9 order-lg-2">
+        {{!-- Main Pane --}}
+        <div id="userInfo" class="order-lg-1 text-center active">
+
+            <a id="slide" aria-expanded="true" aria-controls="userInfo"></a>
+
+            <div class="col-lg-12">
+                <img id="userAvatar" src=" {{user.user_avatar}} " class="rounded-circle" alt="">
+                <h5 class="mb-3"> {{user.user_name}} </h5>
+            </div>
+
+            <div class="list-group panel">
+
+                <a href="#menu1" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+                    <i class="fa fa-dashboard"></i>
+                    <span class="hidden-sm-down">Item 1</span>
+                </a>
+                <div id="menu1" class="collapse">
+                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 1</a>
+                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 2</a>
+                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 3</a>
+                </div>
+
+                <a href="#menu2" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+                    <i class="fa fa-dashboard"></i>
+                    <span class="hidden-sm-down">Item 2</span>
+                </a>
+                <div id="menu2" class="collapse">
+                    <a href="#" class="list-group-item" data-parent="#menu2">Subitem 1</a>
+                    <a href="#" class="list-group-item" data-parent="#menu2">Subitem 2</a>
+                    <a href="#" class="list-group-item" data-parent="#menu2">Subitem 3</a>
+                </div>
+
+                <a href="#menu3" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+                    <i class="fa fa-dashboard"></i>
+                    <span class="hidden-sm-down">Item 3</span>
+                </a>
+                <div id="menu3" class="collapse">
+                    <a href="#" class="list-group-item" data-parent="#menu3">Subitem 1</a>
+                    <a href="#" class="list-group-item" data-parent="#menu3">Subitem 2</a>
+                    <a href="#" class="list-group-item" data-parent="#menu3">Subitem 3</a>
+                </div>
+
+            </div>
+        </div>
+        {{!-- /#userInfo --}}
+
+        <div class="col-lg-8 order-lg-2">
             {{!-- Pane tabs --}}
             <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -128,58 +174,13 @@
             </div>
         </div>
 
-        {{!-- Main Pane --}}
-        <div id="userInfo" class="col-lg-3 order-lg-1 text-center">
-
-              <a id="slide" aria-expanded="true" aria-controls="userInfo"></a>
-
-            <div class="col-lg-12">
-                <img id="userAvatar" src=" {{user.user_avatar}} " class="rounded-circle" alt="">
-                <h5 class="mb-3"> {{user.user_name}} </h5>
-            </div>
-
-            <div class="list-group panel">
-
-                <a href="#menu1" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
-                    <i class="fa fa-dashboard"></i>
-                    <span class="hidden-sm-down">Item 1</span>
-                </a>
-                <div id="menu1" class="collapse">
-                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 1</a>
-                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 2</a>
-                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 3</a>
-                </div>
-
-                <a href="#menu2" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
-                    <i class="fa fa-dashboard"></i>
-                    <span class="hidden-sm-down">Item 2</span>
-                </a>
-                <div id="menu2" class="collapse">
-                    <a href="#" class="list-group-item" data-parent="#menu2">Subitem 1</a>
-                    <a href="#" class="list-group-item" data-parent="#menu2">Subitem 2</a>
-                    <a href="#" class="list-group-item" data-parent="#menu2">Subitem 3</a>
-                </div>
-
-                <a href="#menu3" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
-                    <i class="fa fa-dashboard"></i>
-                    <span class="hidden-sm-down">Item 3</span>
-                </a>
-                <div id="menu3" class="collapse">
-                    <a href="#" class="list-group-item" data-parent="#menu3">Subitem 1</a>
-                    <a href="#" class="list-group-item" data-parent="#menu3">Subitem 2</a>
-                    <a href="#" class="list-group-item" data-parent="#menu3">Subitem 3</a>
-                </div>
-
-            </div>
-        </div>
-        {{!-- /#userInfo --}}
     </div>
     {{!-- /.row --}}
 </div>
 {{!-- /.container --}}
 
 <script>
-    $('#slide').on('click', function(){
-        $('#userInfo').css('width', '30px');
+    $('#slide').on('click', function () {
+        $('#userInfo').toggleClass('active');
     });
 </script>
