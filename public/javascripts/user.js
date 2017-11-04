@@ -114,7 +114,7 @@ $('#submitNewCourse').on('click', function(e) {
     sessionDates[i] = (sessionDates[i]/1000);
     sessionDates[i] = moment.unix(sessionDates[i]).format('MM/DD/YY h:mmA')
   }
-
+console.log(sessionDates);
     e.preventDefault();
     let newCourse = {
       instructor: usersLocalStorage.login,
