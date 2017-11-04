@@ -164,9 +164,10 @@ $('#submitNewCourse').on('click', function(e) {
 
   $('.sessionCard').on('click', function(e) {
     let courseId = $('#CourseId').val();
-
-    let sessionId = $(this).children()[0].id;
-    window.location.href = currentURL + '/courses/' + courseId + '/sessions/' + sessionId;
+    let sessionId = $(this).attr('id');
+    console.log(sessionId);
+    
+    window.location.href = currentURL + '/courses/' + courseId + 'sessions/' + sessionId;
   })
 
 });

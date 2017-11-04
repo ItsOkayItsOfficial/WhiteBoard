@@ -153,7 +153,6 @@ router.post('/api/courses', function(req, res) {
   });
 });
 
-
 router.post('/api/sessions/resources', function(req, res) {
     return db.Sessions.findAll({
       where: {
@@ -180,5 +179,6 @@ router.post('/api/sessions/resources', function(req, res) {
       res.json('created resource');
     })
 })
+
 
 module.exports = router;
