@@ -5,7 +5,6 @@ const db = require('../models');
 let user = {};
 
 
-
 // GET - Landing page (login)
 router.get('/', function(request, response, next) {
   response.render('../views/partials/login');
@@ -36,9 +35,9 @@ router.get('/courses/:courseId/sessions', function(req, res) {
       let hbsObject = {
         sessions
       };
-      res.render('../views/partials/session.handlebars', hbsObject)
+      res.render('../views/partials/session_card.handlebars', hbsObject)
     })
-})
+});
 
 //Route users are sent to for user creation
 router.post('/api/users', function(req, res) {
@@ -49,7 +48,6 @@ router.post('/api/users', function(req, res) {
     }
   })
   .then((result) => {
-    console.log(result);
     //if the user does not exist, create the user in the database
     if (result[0] === undefined) {
       return db.Users.create({
@@ -93,6 +91,7 @@ router.get('/user/:username', function(req, res, next) {
     })
   })
   .then((result) => {
+    console.log(result);
     //loops through the query result to place each courses information into the courses array
     let courses = [];
     for (let i = 0; i < result.length; i++) {
@@ -106,7 +105,7 @@ router.get('/user/:username', function(req, res, next) {
       courses,
       user
     }
-      res.render('../views/partials/profile.handlebars', object)
+      res.render('../views/partials/profileAdmin.handlebars', object)
     })
   .catch(next);
 });

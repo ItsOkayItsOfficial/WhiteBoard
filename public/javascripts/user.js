@@ -57,73 +57,91 @@ $('#authenticatedUser').on('click', function(event) {
   userAuthentication();
 });
 
-//When user submits a new course
+  //When user submits a new course
 $('#submitNewCourse').on('click', function(e) {
-const weekInMiliseconds = 604800000;
-const dayInMiliseconds = 86400000;
-//All dates in unix (ms)
-let startDate = moment($('#inputStartDate').val() + " " + $('#inputCourseTime').val()).valueOf();
+  const weekInMiliseconds = 604800000;
+  const dayInMiliseconds = 86400000;
+  //All dates in unix (ms)
+  let startDate = moment($('#inputStartDate').val() + " " + $('#inputCourseTime').val()).valueOf();
 
-let endDate = moment($('#inputEndDate').val() + " " + $('#inputCourseTime').val()).valueOf();
-let courseLength = endDate - startDate;
-let numberOfWeeks = courseLength/weekInMiliseconds;
-console.log('Number of weeks: ' + numberOfWeeks);
+  let endDate = moment($('#inputEndDate').val() + " " + $('#inputCourseTime').val()).valueOf();
+  let courseLength = endDate - startDate;
+  let numberOfWeeks = courseLength/weekInMiliseconds;
+  console.log('Number of weeks: ' + numberOfWeeks);
 
-let sessionFrequency = $('#inputCourseFreq').val();
+  let sessionFrequency = $('#inputCourseFreq').val();
 
+  let sessionDates = [];
+  //MWF Class option class starts on monday
 
-//MWF Class option class starts on monday
-let sessionDates = [];
-if ($('#inputCourseFreq').val() === '3') {
-  //Class every 2 days m/w/f
-  let sessionInterval = dayInMiliseconds * 2;
-  for (let i =0; i < numberOfWeeks; i++) {
-    let sessionInterval = dayInMiliseconds * 2;
-    for (let j = 0; j < sessionFrequency; j ++) {
-      sessionDates.push(startDate);
+  if ($('#inputCourseFreq').val() === '3') {
+    //Class every 2 days m/w/f
+    for (let i =0; i < numberOfWeeks; i++) {
+      let sessionInterval = dayInMiliseconds * 2;
+      for (let j = 0; j < sessionFrequency; j ++) {
+        sessionDates.push(startDate);
 
-      if (sessionDates.length > 0 && sessionDates.length % 3 == 0) {
-        sessionInterval = dayInMiliseconds * 3;
-        startDate += sessionInterval;
-      }
-      else {
-        startDate += sessionInterval;
+        if (sessionDates.length > 0 && sessionDates.length % 3 == 0) {
+          sessionInterval = dayInMiliseconds * 3;
+          startDate += sessionInterval;
+        }
+        else {
+          startDate += sessionInterval;
+        }
       }
     }
   }
-}
-for (let i = 0; i < sessionDates.length; i++) {
-  sessionDates[i] = (sessionDates[i]/1000);
-  sessionDates[i] = moment.unix(sessionDates[i]).format('MM/DD/YY h:mmA')
-}
 
-  e.preventDefault();
-  let newCourse = {
-    instructor: usersLocalStorage.login,
-    name: $('#inputCourseName').val(),
-    description: $('#inputCourseDescription').val(),
-    time: $('#inputCourseTime').val(),
-    sessions: sessionDates
-  };
+  //Class every weekday
+  if ($('#inputCourseFreq').val() === '5') {
+      for (let i =0; i < numberOfWeeks; i++) {
+        let sessionInterval = dayInMiliseconds;
+      for (let j = 0; j < sessionFrequency; j ++) {
+        sessionDates.push(startDate);
 
-  //posts new course to server
-  $.ajax("/api/courses", {
-    type: "POST",
-    data: newCourse
-  }).then(
-    //after response, sends user to profile page to see all courses
-    function(data) {
-      window.location.href = currentURL + '/user/' + usersLocalStorage.login;
+        if (sessionDates.length > 0 && sessionDates.length % 5 == 0) {
+          sessionInterval = dayInMiliseconds * 3;
+          startDate += sessionInterval;
+        }
+        else {
+          startDate += sessionInterval;
+        }
+      }
     }
-  );
-  });
+  }
+  //Formats session dates before sending to server
+  for (let i = 0; i < sessionDates.length; i++) {
+    sessionDates[i] = (sessionDates[i]/1000);
+    sessionDates[i] = moment.unix(sessionDates[i]).format('MM/DD/YY h:mmA')
+  }
+
+    e.preventDefault();
+    let newCourse = {
+      instructor: usersLocalStorage.login,
+      name: $('#inputCourseName').val(),
+      description: $('#inputCourseDescription').val(),
+      time: $('#inputCourseTime').val(),
+      sessions: sessionDates
+    };
+
+    //posts new course to server
+    $.ajax("/api/courses", {
+      type: "POST",
+      data: newCourse
+    }).then(
+      //after response, sends user to profile page to see all courses
+      function(data) {
+        window.location.href = currentURL + '/user/' + usersLocalStorage.login;
+      }
+    );
+});
 
 
-
+ //When user clicks on one of their courses, redirects them to the sessions for that course
   $('.selectedCourse').on('click', ((e) => {
       e.preventDefault();
       let courseId = $(e.target)[0].id;
+      console.log(courseId);
       window.location.href = currentURL + '/courses/' + courseId + '/sessions'
-
   }))
 });
