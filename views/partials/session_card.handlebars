@@ -1,8 +1,9 @@
 {{!-- Session Card --}}
-    <div class="card" style="width: 20rem;" data-toggle="modal" data-target="#{{sessionID}}">
+{{#each sessions}}
+    <div class="card" style="width: 20rem;" data-toggle="modal" data-target="#{{id}}">
         <div class="card-header">
             <img class="icon" src=' {{subject_avatar}} '> {{subject}}
-            <small class="text-muted" style="float:right">Attendence {{attendence}} </small>
+            <small class="text-muted" style="float:right">Attendance {{attendance}} </small>
         </div>
 
         <div class="card-block">
@@ -20,7 +21,7 @@
 
 
 
-    <div id="{{sessionID}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby=" {{sessionID}} " aria-hidden="true">
+    <div id="{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby=" {{id}} " aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -65,3 +66,4 @@
             </div>
         </div>
     </div>
+    {{/each}}
