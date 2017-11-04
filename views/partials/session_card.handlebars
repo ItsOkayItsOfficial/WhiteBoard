@@ -1,5 +1,5 @@
 {{!-- Session Card --}}
-
+{{#each sessions}}
     <div class="card" style="width: 20rem;" data-toggle="modal" data-target="#{{sessionID}}">
         <div class="card-header">
             <img class="icon" src=' {{subject_avatar}} '> {{subject}}
@@ -66,3 +66,4 @@
             </div>
         </div>
     </div>
+    {{/each}}

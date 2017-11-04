@@ -67,23 +67,22 @@ let startDate = moment($('#inputStartDate').val() + " " + $('#inputCourseTime').
 let endDate = moment($('#inputEndDate').val() + " " + $('#inputCourseTime').val()).valueOf();
 let courseLength = endDate - startDate;
 let numberOfWeeks = courseLength/weekInMiliseconds;
+console.log('Number of weeks: ' + numberOfWeeks);
 
 let sessionFrequency = $('#inputCourseFreq').val();
-let msBetweenSessions = (weekInMiliseconds/sessionFrequency);
-let numberOfSessions = (courseLength/msBetweenSessions);
-console.log(numberOfSessions)
-let sessionDates = [];
 
 
 //MWF Class option class starts on monday
+let sessionDates = [];
 if ($('#inputCourseFreq').val() === '3') {
   //Class every 2 days m/w/f
   let sessionInterval = dayInMiliseconds * 2;
   for (let i =0; i < numberOfWeeks; i++) {
+    let sessionInterval = dayInMiliseconds * 2;
     for (let j = 0; j < sessionFrequency; j ++) {
       sessionDates.push(startDate);
 
-      if (sessionDates.length > 0 && sessionDates.length  % 3 == 0) {
+      if (sessionDates.length > 0 && sessionDates.length % 3 == 0) {
         sessionInterval = dayInMiliseconds * 3;
         startDate += sessionInterval;
       }
@@ -121,8 +120,10 @@ for (let i = 0; i < sessionDates.length; i++) {
 
 
 
-  $('#selectedCourse').on('click', ((e) => {
+  $('.selectedCourse').on('click', ((e) => {
       e.preventDefault();
-      console.log('Hi');
+      let courseId = $(e.target)[0].id;
+      window.location.href = currentURL + '/courses/' + courseId + '/sessions'
+
   }))
 });

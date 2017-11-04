@@ -15,12 +15,29 @@ router.get('/', function(request, response, next) {
 router.get('/user/new', function(req, res) {
   res.render('../views/partials/newUser.handlebars')
 })
-
+//Callback URL for github Oauth
 router.get('/new', function(req, res) {
   let newObject = {
     message: 'Authentication complete, click sign in'
   }
   res.render('../views/partials/login.handlebars', newObject);
+})
+
+//Get request for sessions when user clicks on course
+router.get('/courses/:courseId/sessions', function(req, res) {
+  let CourseId = req.params.courseId;
+    return db.Sessions.findAll({
+      where: {
+        CourseId
+      }
+    })
+    .then((sessions) => {
+      console.log(sessions);
+      let hbsObject = {
+        sessions
+      };
+      res.render('../views/partials/session_card.handlebars', hbsObject)
+    })
 })
 
 //Route users are sent to for user creation
