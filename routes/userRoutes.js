@@ -22,13 +22,16 @@ router.get('/new', function(req, res) {
   res.render('../views/partials/login.handlebars', newObject);
 })
 
-//Get request for sessions when user clicks on course
+// //Get request for sessions when user clicks on course
 router.get('/courses/:courseId/sessions', function(req, res) {
   let CourseId = req.params.courseId;
     return db.Sessions.findAll({
       where: {
         CourseId
-      }
+      },
+      include: [{
+        model: db.Resources,
+      }]
     })
     .then((sessions) => {
       console.log(sessions);
@@ -39,6 +42,7 @@ router.get('/courses/:courseId/sessions', function(req, res) {
       res.render('../views/partials/session_card.handlebars', hbsObject)
     })
 });
+
 
 //Route users are sent to for user creation
 router.post('/api/users', function(req, res) {
@@ -152,7 +156,7 @@ router.post('/api/courses', function(req, res) {
     })
   });
 });
-
+//route to create new resource
 router.post('/api/sessions/resources', function(req, res) {
     return db.Sessions.findAll({
       where: {
@@ -169,6 +173,7 @@ router.post('/api/sessions/resources', function(req, res) {
     .then((result) => {
       let userId = result.dataValues.id;
       return db.Resources.create({
+        CourseId: req.body.courseId,
         UserId: userId,
         SessionId: req.body.sessionId,
         resource_url: req.body.resourceUrl,

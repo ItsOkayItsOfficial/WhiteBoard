@@ -15,7 +15,7 @@
 
         <div class="card-footer">
             <small class="text-muted">Comments ({{comment_count}}) </small>
-            <small class="text-muted">Resources ({{resource_count}}) </small>
+            <small class="text-muted">Resources ({{Resources.length}}) </small>
             <small class="text-muted">Updated {{updated}} </small>
         </div>
     </div>
@@ -25,7 +25,7 @@
     <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby=" {{id}} " aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header"
                     <h4 class="modal-title"> {{session_name}} </h4>
                     <p class="modal-subtitle text-muted">Date: {{session_date}} | Time: {{course_time}} </p>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -38,30 +38,29 @@
                             <form>
                               <div class="form-group">
                                 <label for="resourceText">Resource</label>
-                                <input type="text" class="form-control resourceUrl"  placeholder="Resource URL">
-                                <input type="text" class="form-control resourceDesc"  placeholder="Resource Description">
+                                <input type="text" class="form-control" id= "resourceUrl{{id}}" placeholder="Resource URL">
+                                <input type="text" class="form-control" id="resourceDesc{{id}}" placeholder="Resource Description">
                               </div>
                               <button type="submit" id = "{{id}}"class="resourceSubmit" class="btn btn-primary">Submit</button>
                             </form>
-                            <div class="col-md-4">.col-md-4</div>
-                            <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 col-md-offset-4"></div>
                         </div>
+                        {{#each Resources}}
                         <div class="row">
-                            <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
-                            <div class="col-md-2 col-md-offset-4">.col-md-2 .col-md-offset-4</div>
+                            <div class="col-md-3 col-md-offset-3">{{resource_url}}</div>
+                            <div class="col-md-2 col-md-offset-4">{{resource_desc}}</div>
                         </div>
+                        {{/each}}
                         <div class="row">
-                            <div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
+                            <div class="col-md-6 col-md-offset-3"></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-9">
-                                Level 1: .col-sm-9
                                 <div class="row">
                                     <div class="col-8 col-sm-6">
-                                        Level 2: .col-8 .col-sm-6
                                     </div>
                                     <div class="col-4 col-sm-6">
-                                        Level 2: .col-4 .col-sm-6
                                     </div>
                                 </div>
                             </div>

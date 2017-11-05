@@ -7,6 +7,7 @@ module.exports = function(sequelize, DataTypes) {
   resources.associate = function(models) {
     resources.belongsTo(models.Sessions);
     resources.belongsTo(models.Users);
+    resources.belongsTo(models.Courses);
   }
   
   return resources;

@@ -144,30 +144,25 @@ $('#submitNewCourse').on('click', function(e) {
       window.location.href = currentURL + '/courses/' + courseId + '/sessions'
   }))
 
+
   $('.resourceSubmit').on('click', function(e) {
     e.preventDefault();
     let sessionId = $(this).attr('id');
     let newResource = {
-      courseId: $('#CourseId').val(),
+      courseId: $('#CourseId').html(),
       userName: usersLocalStorage.login,
-      resourceUrl: $('.resourceUrl').val(),
-      resourceDesc: $('.resourceDesc').val(),
+      resourceUrl: $('#resourceUrl' + sessionId).val(),
+      resourceDesc: $('#resourceDesc' + sessionId).val(),
       sessionId
     }
 
     
     $.post('/api/sessions/resources', newResource, ((data) => {
       console.log(data);
+      window.location.reload();
     }))
 
-  })
+  });
 
-  $('.sessionCard').on('click', function(e) {
-    let courseId = $('#CourseId').val();
-    let sessionId = $(this).attr('id');
-    console.log(sessionId);
-    
-    window.location.href = currentURL + '/courses/' + courseId + 'sessions/' + sessionId;
-  })
 
 });
