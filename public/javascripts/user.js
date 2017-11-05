@@ -156,7 +156,6 @@ $('#submitNewCourse').on('click', function(e) {
       sessionId
     }
 
-    
     $.post('/api/sessions/resources', newResource, ((data) => {
       console.log(data);
       window.location.reload();

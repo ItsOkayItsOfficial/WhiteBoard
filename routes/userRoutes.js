@@ -175,6 +175,7 @@ router.post('/api/sessions/resources', function(req, res) {
       return db.Resources.create({
         CourseId: req.body.courseId,
         UserId: userId,
+        user_login: req.body.userName,
         SessionId: req.body.sessionId,
         resource_url: req.body.resourceUrl,
         resource_desc: req.body.resourceDesc
