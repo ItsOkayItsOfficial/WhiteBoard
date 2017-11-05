@@ -34,7 +34,6 @@ router.get('/courses/:courseId/sessions', function(req, res) {
       }]
     })
     .then((sessions) => {
-      console.log(sessions);
       let hbsObject = {
         CourseId,
         sessions
@@ -156,6 +155,7 @@ router.post('/api/courses', function(req, res) {
     })
   });
 });
+
 //route to create new resource
 router.post('/api/sessions/resources', function(req, res) {
     return db.Sessions.findAll({
@@ -186,5 +186,56 @@ router.post('/api/sessions/resources', function(req, res) {
     })
 })
 
+//Route when user submits a rating
+router.post('/api/sessions/rating', function(req, res) {
+  //finds user from username
+  return db.Users.findOne({
+      where: {
+        user_login: req.body.userName
+      }
+  })
+  .then((result) => {
+  let userId= result.dataValues.id;
+  //creates a rating associated with user
+  return db.Ratings.create({
+    SessionId: req.body.SessionId,
+    rating: req.body.rating,
+    UserId: userId
+  })
+  .then((result) => {
+    //finds all ratings for the session the user rated
+  return db.Ratings.findAll({
+    where: {
+      SessionId: req.body.SessionId
+    }
+    })
+  })
+  .then((result) => {
+  //finds the average of all the ratings
+  let allSessionRatings = [];
+  let ratingSum = 0;
+    for (let i = 0; i < result.length; i ++) {
+      allSessionRatings.push(result[i].dataValues.rating);
+    }
+    for (let j = 0; j < allSessionRatings.length; j++) {
+      ratingSum += allSessionRatings[j];
+    }
+    console.log(allSessionRatings);
+    console.log(ratingSum);
+    return ratingSum/allSessionRatings.length;
+  })
+  .then((session_rating) => {
+    //updates the average rating in the session table
+    let values = { session_rating: session_rating };
+    let selector = { where: { Id: req.body.SessionId }}
+    return db.Sessions.update(values, selector)
+  })
+  .then((result) => {
+    console.log(result);
+    res.json('Rating submitted')
+  })
+})
+
+});
 
 module.exports = router;

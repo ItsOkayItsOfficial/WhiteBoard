@@ -5,7 +5,11 @@ module.exports = function(sequelize, DataTypes) {
     session_date: DataTypes.STRING,
     session_desc: DataTypes.STRING,
     session_time: DataTypes.INTEGER,
-    session_duration: DataTypes.INTEGER
+    session_duration: DataTypes.INTEGER,
+    session_rating: {
+      type: DataTypes.FLOAT,
+      len: 3
+    }
   });
 
   sessions.associate = function(models) {

@@ -144,7 +144,7 @@ $('#submitNewCourse').on('click', function(e) {
       window.location.href = currentURL + '/courses/' + courseId + '/sessions'
   }))
 
-
+  //Posts a resource
   $('.resourceSubmit').on('click', function(e) {
     e.preventDefault();
     let sessionId = $(this).attr('id');
@@ -163,5 +163,18 @@ $('#submitNewCourse').on('click', function(e) {
 
   });
 
+  $('.ratingSubmit').on('click', function(e) {
+    e.preventDefault();
 
+      let newRating = {
+        SessionId: $(this).attr('id'),
+        rating: $("#sessionRating" + $(this).attr('id')).val(),
+        userName: usersLocalStorage.login,
+      }
+
+      $.post('/api/sessions/rating', newRating, ((data) => {
+        console.log(data);
+        window.location.reload();
+      }))
+  });
 });

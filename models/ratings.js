@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
-  let ratings = sequelize.define("Rating", {
-    rating: DataTypes.INTEGER
+  let ratings = sequelize.define("Ratings", {
+    rating: DataTypes.INTEGER,
   });
 
   ratings.associate = function(models) {
