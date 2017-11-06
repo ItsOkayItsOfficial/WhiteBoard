@@ -10,10 +10,6 @@ router.get('/', function(request, response, next) {
   response.render('../views/partials/login');
 });
 
-//Get new user sign up page
-router.get('/user/new', function(req, res) {
-  res.render('../views/partials/newUser.handlebars')
-})
 //Callback URL for github Oauth
 router.get('/new', function(req, res) {
   let newObject = {
@@ -108,6 +104,7 @@ router.get('/user/:username', function(req, res, next) {
   .then((courses) => {
     //sends the object with the courses and user information to handelbars to render the profile page
     hbsObject.courses = courses;
+    //finds all of the resources the current user has bookmarked
     return db.Starred_Resources.findAll({
       where: {
         userId: hbsObject.user.id
@@ -124,7 +121,6 @@ router.get('/user/:username', function(req, res, next) {
     })
     })
     .then((starredResources) => {
-      console.log(starredResources);
       hbsObject.starredResources = starredResources;
       res.render('../views/partials/profileAdmin.handlebars', hbsObject)
     })
@@ -158,14 +154,13 @@ router.post('/api/courses', function(req, res) {
       })
     })
     .then((result) => {
-      console.log(result.dataValues.CourseId);
+      //Creates sessions for the course
       for (let i = 0; i < req.body.sessions.length; i ++) {
         db.Sessions.create({
           session_date: req.body.sessions[i],
           CourseId: result.dataValues.CourseId
         })
       }
-      //this result gives courseID, WE WILL INSERT SESSIONS HERE USING COURSEID AS A FOREIGN KEY
     })
     .then((result) => {
       res.json('Successfully created course');
@@ -175,12 +170,14 @@ router.post('/api/courses', function(req, res) {
 
 //route to create new resource
 router.post('/api/sessions/resources', function(req, res) {
+  //find all sessions from the course
     return db.Sessions.findAll({
       where: {
         CourseId: req.body.courseId
       }
     })
     .then((result) => {
+      //finds the user
       return db.Users.findOne({
         where: {
           user_login: req.body.userName
@@ -189,6 +186,7 @@ router.post('/api/sessions/resources', function(req, res) {
     })
     .then((result) => {
       let userId = result.dataValues.id;
+      //creates resource tied to a specific session
       return db.Resources.create({
         CourseId: req.body.courseId,
         UserId: userId,
@@ -237,8 +235,6 @@ router.post('/api/sessions/rating', function(req, res) {
     for (let j = 0; j < allSessionRatings.length; j++) {
       ratingSum += allSessionRatings[j];
     }
-    console.log(allSessionRatings);
-    console.log(ratingSum);
     return ratingSum/allSessionRatings.length;
   })
   .then((session_rating) => {
@@ -256,6 +252,7 @@ router.post('/api/sessions/rating', function(req, res) {
 
 //route to star a resource
 router.post('/api/sessions/starredResources', ((req, res) => {
+  //finds user
   return db.Users.findOne({
     where: {
       user_login: req.body.userName
@@ -263,6 +260,7 @@ router.post('/api/sessions/starredResources', ((req, res) => {
   })
   .then((result) => {
     let userId = result.dataValues.id;
+    //Creates a starred resource
     return db.Starred_Resources.create({
       CourseId: req.body.courseId,
       SessionId: req.body.sessionId,
