@@ -177,4 +177,21 @@ $('#submitNewCourse').on('click', function(e) {
         window.location.reload();
       }))
   });
+
+  $('.starResource').on('click', function(e) {
+    e.preventDefault();
+    let resourceId = $(this).attr('id');
+    // need to find sessionId somehow
+    let sessionId = $(this).data("sessionId");
+    let newStarredResource = {
+      sessionId,
+      courseId: $('#CourseId').html(),
+      userName: usersLocalStorage.login,
+      resourceId,
+    }
+    $.post('/api/sessions/starredResources', newStarredResource, ((data) => {
+      console.log(data);
+    }))
+  })
+
 });

@@ -93,16 +93,20 @@
 
                         <table class="table table-sm table-hover table-striped">
                             <tbody>
-                                {{#each resource}}
+                                {{#each starredResources}}
                                 <tr>
                                     <td>
                                         {{!-- From resources table --}}
-                                        <a href="{{resource_url}}">
-                                            {{resource_title}}
+
+                                        <a href="{{Resource.resource_url}}" target="_blank">
+                                            {{Resource.resource_url}}
                                         </a>
                                         <p>
+                                            {{Resource.resource_desc}}
                                             <a href=' {{session_url}} '> {{session_name}} </a> |
                                             <a href=' {{subject_url}} '> {{subject}} </a>
+                                            Session: {{SessionId}}
+                                            Course: {{Course.course_name}}
                                         </p>
                                     </td>
                                 </tr>

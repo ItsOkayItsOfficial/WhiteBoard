@@ -24,7 +24,9 @@ router.get('/new', function(req, res) {
 
 // //Get request for sessions when user clicks on course
 router.get('/courses/:courseId/sessions', function(req, res) {
+  let hbsObject = {}
   let CourseId = req.params.courseId;
+  hbsObject.CourseId = CourseId;
     return db.Sessions.findAll({
       where: {
         CourseId
@@ -35,14 +37,11 @@ router.get('/courses/:courseId/sessions', function(req, res) {
       }]
     })
     .then((sessions) => {
-      let hbsObject = {
-        CourseId,
-        sessions
-      };
+      console.log(sessions);
+      hbsObject.sessions = sessions;
       res.render('../views/partials/session_card.handlebars', hbsObject)
     })
 });
-
 
 //Route users are sent to for user creation
 router.post('/api/users', function(req, res) {
@@ -76,6 +75,7 @@ router.post('/api/users', function(req, res) {
 //gets users profile page
 router.get('/user/:username', function(req, res, next) {
   let userName = req.params.username;
+  let hbsObject = {};
   //finds user where username matches url parameter
   db.Users.findOne({
     where: {
@@ -85,6 +85,7 @@ router.get('/user/:username', function(req, res, next) {
   .then((result) => {
     //sets user to the user that logged in
     user = result.dataValues;
+    hbsObject.user = user;
     //returns the logged in users courses
     return db.Enrollment.findAll({
       where: {
@@ -106,11 +107,26 @@ router.get('/user/:username', function(req, res, next) {
   })
   .then((courses) => {
     //sends the object with the courses and user information to handelbars to render the profile page
-    let object = {
-      courses,
-      user
-    }
-      res.render('../views/partials/profileAdmin.handlebars', object)
+    hbsObject.courses = courses;
+    return db.Starred_Resources.findAll({
+      where: {
+        userId: hbsObject.user.id
+      },
+      include: [{
+        model: db.Sessions
+      },
+      {
+        model: db.Courses
+      }, 
+      {
+        model: db.Resources
+      }]
+    })
+    })
+    .then((starredResources) => {
+      console.log(starredResources);
+      hbsObject.starredResources = starredResources;
+      res.render('../views/partials/profileAdmin.handlebars', hbsObject)
     })
   .catch(next);
 });
@@ -235,8 +251,27 @@ router.post('/api/sessions/rating', function(req, res) {
     console.log(result);
     res.json('Rating submitted')
   })
-})
-
+});
 });
 
+//route to star a resource
+router.post('/api/sessions/starredResources', ((req, res) => {
+  return db.Users.findOne({
+    where: {
+      user_login: req.body.userName
+    }
+  })
+  .then((result) => {
+    let userId = result.dataValues.id;
+    return db.Starred_Resources.create({
+      CourseId: req.body.courseId,
+      SessionId: req.body.sessionId,
+      UserId: userId,
+      ResourceId: req.body.resourceId,
+    })
+  })
+  .then((result) => {
+    res.json('Resource starred')
+  })
+}));
 module.exports = router;
