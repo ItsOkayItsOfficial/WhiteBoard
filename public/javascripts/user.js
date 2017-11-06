@@ -4,7 +4,8 @@ let clientId = '51ec5a185abed21675e6';
 let clientSecret = '38e3b69bbddbd7d9bc89d44935615578f96ff4cd';
 let redirectUri = 'http://127.0.0.1:3000/new';
 let usersLocalStorage = JSON.parse(localStorage.getItem('User'));
-console.log(usersLocalStorage);
+
+$(".rating").rating();
 
 
 
