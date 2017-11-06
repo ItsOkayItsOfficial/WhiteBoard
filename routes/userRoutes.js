@@ -29,6 +29,7 @@ router.get('/courses/:courseId/sessions', function(req, res) {
       where: {
         CourseId
       },
+      order: [['session_date', 'ASC']],
       include: [{
         model: db.Resources,
       }]
