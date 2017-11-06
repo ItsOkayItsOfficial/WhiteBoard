@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Whiteboard -Sign In</title>
+
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Permanent+Marker:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="public/stylesheets/animate.css">
+	<!-- Custom Stylesheet -->
+	<link rel="stylesheet" href="public/stylesheets/login.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="top">
+			<h1 id="title" class="hidden"><span id="logo"> Whiteboard </span></h1>
+		</div>
+		<br/><br/>
+
+		<div class="login-box animated fadeInUp">
+			<div class="box-header">
+				<h2>Log In</h2>
+			</div>
+			<label for="username">Username</label>
+			<br/>
+			<input type="text" id="username">
+			<br/>
+			<label for="password">Password</label>
+			<br/>
+			<input type="password" id="password">
+			<form class="form-signin">
+       		 {{#if message}}
+	        <h2> {{message}} </h2>
+	        <button class="btn btn-lg btn-primary btn-block" id='authenticatedUser'>Sign in</button>
+	        {{/if}}
+	        {{#unless message}}
+	        <h2 class="form-signin-heading"></h2>
+	        <button class="btn btn-lg btn-primary btn-block" id='login'>Sign in</button>
+	      </form>
+        {{/unless}}
+        <br/>
+			<a href="https://github.com/password_reset"><p class="small">Forgot your password?</p></a>
+		</div>
+</div>
+</body>
+<script>
+	$(document).ready(function () {
+    	$('#logo').addClass('animated fadeInDown');
+    	$("input:text:visible:first").focus();
+ </script>
+</html>
