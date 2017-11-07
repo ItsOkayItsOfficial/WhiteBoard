@@ -22,7 +22,7 @@
 
 
 
-    <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby=" {{id}} " aria-hidden="true" data-backdrop="static">
+    <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{id}}" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header"
@@ -33,20 +33,23 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-4">
-                                <h6>{{session_name}} Session Name</h6>
-                                <p> {{session_desc}} Description of course</p>
+                                <h6><em>{{session_name}} Session Name</em></h6>
+                                    <div id="sessionPost">
+                                        <div class="form-group">
+                                          <textarea class="form-control" rows="5" id="comment"></textarea>
+                                        </div>
+                                        <button type="button" class="btn btn-primary btn-sm" id="descAdd">Add</button>
+                                    </div>
                             </div>
                             <div class="col-md-4">
                                 <h6>Session Activities</h6>
                                     <ul>
-                                        <li>Activites</li>
-                                        <li>Activites</li>
-                                        <li>Activites</li>
-                                        <li>Activites</li>
+                                        <li></li>
                                     </ul>
                             </div>
                             <div class="col-md-4">
@@ -57,24 +60,31 @@
                                         <input type="text" class="form-control" id= "resourceUrl{{id}}" placeholder="Resource URL">
                                         <input type="text" class="form-control" id="resourceDesc{{id}}" placeholder="Resource Description">
                                     </div>
-                                        <button type="submit" id = "{{id}}"class="resourceSubmit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" id = "{{id}}" class="resourceSubmit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>
                         </div>
+                    </div>
+                        <br>
                         {{#each Resources}}
                         <div class="row">
-                            <div class="col-md-12">
-                                <button type="button" id='{{id}}' data-session-id = "{{SessionId}}" class="btn btn-info">Bookmark Resource</button>
-                                <ul>
-                                    <li>
-                                        <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
-                                        <div>{{resource_desc}}</div>
-                                        <div>Posted by: {{user_login}} at {{createdAt}}</div>
-                                    </li>
-                                </ul>
+                            <div class="col-sm-1">
+                                <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
+                                <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-11">
+                                    <ul>
+                                        <li>
+                                            <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
+                                            <div>{{resource_desc}}</div>
+                                            <div>Posted by: {{user_login}} at {{createdAt}}</div>
+                                        </li>
+                                    </ul>
                             </div>
                         </div>
                         {{/each}}
+                        <div class="row">
                             <form>
                               <div class="form-group">
                                 <label for="resourceText">Rate this session</label>
@@ -82,8 +92,8 @@
                               </div>
                               <button type="submit" id = "{{id}}"class="ratingSubmit" class="btn btn-primary">Submit</button>
                             </form>
+                        </div>
                     </div>
-                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
@@ -91,6 +101,7 @@
         </div>
     </div>
     {{/each}}
+
 
 
 
