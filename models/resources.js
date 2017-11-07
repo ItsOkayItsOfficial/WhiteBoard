@@ -1,8 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
   let resources = sequelize.define("Resources", {
     resource_url: DataTypes.STRING,
+    resource_title: DataTypes.STRING,
     resource_desc: DataTypes.STRING,
-    user_login: DataTypes.STRING
+    user_login: DataTypes.STRING,
   });
 
   resources.associate = function(models) {

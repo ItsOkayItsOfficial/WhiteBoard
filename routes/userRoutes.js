@@ -191,6 +191,7 @@ router.post('/api/sessions/resources', function(req, res) {
         CourseId: req.body.courseId,
         UserId: userId,
         user_login: req.body.userName,
+        resource_title: req.body.resourceTitle,
         SessionId: req.body.sessionId,
         resource_url: req.body.resourceUrl,
         resource_desc: req.body.resourceDesc

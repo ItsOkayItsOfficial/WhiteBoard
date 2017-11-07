@@ -151,6 +151,7 @@ $('#submitNewCourse').on('click', function(e) {
     let newResource = {
       courseId: $('#CourseId').html(),
       userName: usersLocalStorage.login,
+      resourceTitle: $('#resourceTitle' + sessionId).val(),
       resourceUrl: $('#resourceUrl' + sessionId).val(),
       resourceDesc: $('#resourceDesc' + sessionId).val(),
       sessionId
