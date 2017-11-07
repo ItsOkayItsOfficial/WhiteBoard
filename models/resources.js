@@ -4,6 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     resource_title: DataTypes.STRING,
     resource_desc: DataTypes.STRING,
     user_login: DataTypes.STRING,
+    instructor: DataTypes.BOOLEAN
   });
 
   resources.associate = function(models) {

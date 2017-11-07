@@ -20,7 +20,6 @@ router.get('/new', function(req, res) {
 
 // //Get request for sessions when user clicks on course
 router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
-  console.log(req.params)
   let hbsObject = {}
   let CourseId = req.params.courseId;
   hbsObject.CourseId = CourseId;
@@ -50,7 +49,6 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
     })
     })
     .then((sessions) => {
-      console.log(sessions);
       hbsObject.sessions = sessions;
       //if user has already given a rating for the session, they cannot rate again
       for (let i = 0; i < sessions.length; i++) {
@@ -211,11 +209,18 @@ router.post('/api/sessions/resources', function(req, res) {
     })
     .then((result) => {
       let userId = result.dataValues.id;
+      let instructorStatus = null;
+      console.log(result.dataValues.instructor);
+      if (result.dataValues.instructor === true) {
+        instructorStatus = result.dataValues.instructor
+      }
+      console.log(instructorStatus);
       //creates resource tied to a specific session
       return db.Resources.create({
         CourseId: req.body.courseId,
         UserId: userId,
         user_login: req.body.userName,
+        instructor: instructorStatus,
         resource_title: req.body.resourceTitle,
         SessionId: req.body.sessionId,
         resource_url: req.body.resourceUrl,
@@ -270,7 +275,6 @@ router.post('/api/sessions/rating', function(req, res) {
     return db.Sessions.update(values, selector)
   })
   .then((result) => {
-    console.log(result);
     res.json('Rating submitted')
   })
 });

@@ -51,7 +51,9 @@
                         </div>
                     </div>
                         <br>
+                        <h4> Instructor Resources </h4>
                         {{#each Resources}}
+                            {{#if instructor}}
                          <div class="row">
                             <div class="col-sm-1">
                                 <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
@@ -67,7 +69,29 @@
                                         </li>
                                     </ul>
                             </div>
-                        </div> 
+                        </div>
+                           {{/if}}
+                      {{/each}}
+                        <h4> Student Resources </h4>
+                        {{#each Resources}}
+                          {{#unless instructor}}
+                         <div class="row">
+                            <div class="col-sm-1">
+                                <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
+                                <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-11">
+                                    <ul>
+                                        <li>
+                                            <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
+                                            <div>{{resource_desc}}</div>
+                                            <div>Posted by: {{user_login}} at {{createdAt}}</div>
+                                        </li>
+                                    </ul>
+                            </div>
+                        </div>
+                        {{/unless}}
                         {{/each}}
                         <div class="row">
                            {{#unless Ratings}}
