@@ -169,7 +169,7 @@ $('#submitNewCourse').on('click', function(e) {
     e.preventDefault();
 
       let newRating = {
-        SessionId: $(this).data('CourseId'),
+        SessionId: $(this).attr('id'),
         rating: $("#sessionRating" + $(this).attr('id')).val(),
         userName: usersLocalStorage.login,
       }
@@ -194,6 +194,7 @@ $('#submitNewCourse').on('click', function(e) {
     }
     $.post('/api/sessions/starredResources', newStarredResource, ((data) => {
       console.log(data);
+      window.location.reload();
     }))
   })
 
