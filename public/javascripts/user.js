@@ -215,5 +215,21 @@ $('#submitNewCourse').on('click', function(e) {
   }))
   });
 
-  
+    $('.sessionDescSubmit').on('click', function(e) {
+    e.preventDefault();
+    let sessionId = $(this).attr("id");
+    let courseId = $('.courseId').attr('data-id'); 
+    let sessionInfo = {
+      sessionId,
+      courseId,
+      userName: usersLocalStorage.login,
+      sessionTitle: $('#sessionTitle' + sessionId).val(),
+      sessionDesc: $('#sessionDesc' + sessionId).val()
+    }
+    console.log(sessionInfo);
+  $.post('/api/sessions/sessionInfo', sessionInfo, ((data) => {
+    console.log(data);
+    window.location.reload();
+  }))
+  });
 });

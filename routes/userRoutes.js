@@ -340,4 +340,14 @@ router.post('/api/sessions/comments', function(req, res) {
       res.json('created comment');
     })
 })
+
+router.post('/api/sessions/sessionInfo', function(req, res) {
+    let values = { session_name: req.body.sessionTitle, session_desc: req.body.sessionDesc };
+    let selector = { where: { id: req.body.sessionId }}
+  return db.Sessions.update(values, selector)
+.then((result) => {
+  console.log(result);
+  console.log('Session updated');
+})
+});
 module.exports = router;
