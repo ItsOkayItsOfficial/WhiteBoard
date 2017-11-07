@@ -30,6 +30,8 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
     })
     .then((result) => {
       hbsObject.userId = result.dataValues.id;
+      hbsObject.instructor = result.dataValues.instructor;
+      console.log(hbsObject.instructor)
       // let userId = result.dataValues.id;
     return db.Sessions.findAll({
       where: {
@@ -257,6 +259,7 @@ router.post('/api/sessions/rating', function(req, res) {
     })
   })
   .then((result) => {
+    console.log(result);
   //finds the average of all the ratings
   let allSessionRatings = [];
   let ratingSum = 0;
@@ -269,6 +272,7 @@ router.post('/api/sessions/rating', function(req, res) {
     return ratingSum/allSessionRatings.length;
   })
   .then((session_rating) => {
+    console.log(session_rating);
     //updates the average rating in the session table
     let values = { session_rating: session_rating };
     let selector = { where: { Id: req.body.SessionId }}
