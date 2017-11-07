@@ -46,6 +46,7 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
     })
     })
     .then((sessions) => {
+      console.log(sessions);
       hbsObject.sessions = sessions;
       //if user has already given a rating for the session, they cannot rate again
       for (let i = 0; i < sessions.length; i++) {
