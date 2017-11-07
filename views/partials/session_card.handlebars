@@ -51,6 +51,7 @@
                         </div>
                     </div>
                         <br>
+                      {{#if Resources}}
                         <h4> Instructor Resources </h4>
                         {{#each Resources}}
                             {{#if instructor}}
@@ -93,6 +94,7 @@
                         </div>
                         {{/unless}}
                         {{/each}}
+                      {{/if}}
                         <div class="row">
                            {{#unless Ratings}}
                              <form>
