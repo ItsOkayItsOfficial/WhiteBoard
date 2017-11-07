@@ -150,3 +150,12 @@ a {
   font-size: 12px;
 
 }
+
+.modal-content {
+  background: url('../../public/images/concrete-texture.png')
+}
+
+.modal-header {
+  background-color: #17a2b8;
+  color: #000000;
+}
