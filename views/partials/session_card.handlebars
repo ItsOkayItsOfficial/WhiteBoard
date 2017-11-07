@@ -1,4 +1,6 @@
 {{!-- Session Card --}}
+
+
 <h1 id="CourseId">{{CourseId}}</h1>
 {{#each sessions}}
     <div id={{id}} class="card sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
@@ -54,6 +56,7 @@
                             <div class="col-md-4 col-md-offset-4">Posted by: {{user_login}} at {{createdAt}}</div>
                         </div>
                         {{/each}}
+                        {{#unless Ratings}}
                             <form>
                               <div class="form-group">
                                 <label for="resourceText">Rate this session</label>
@@ -61,6 +64,10 @@
                               </div>
                               <button type="submit" id = "{{id}}"class="ratingSubmit" class="btn btn-primary">Submit</button>
                             </form>
+                          {{/unless}}
+                        {{#if Ratings}}
+                          <p> You already rated this session a {{session_rating}}.
+                        {{/if}}
                         <div class="row">
                             <div class="col-md-6 col-md-offset-3"></div>
                         </div>

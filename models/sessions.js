@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
   sessions.associate = function(models) {
     sessions.belongsTo(models.Courses);
     sessions.hasMany(models.Resources);
+    sessions.hasMany(models.Ratings);
   }
   return sessions;
 };

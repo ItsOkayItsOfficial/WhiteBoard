@@ -5,10 +5,6 @@ let clientSecret = '38e3b69bbddbd7d9bc89d44935615578f96ff4cd';
 let redirectUri = 'http://127.0.0.1:3000/new';
 let usersLocalStorage = JSON.parse(localStorage.getItem('User'));
 
-$(".rating").rating();
-
-
-
 //Redirects user to github to be authenticated
 function gitHubRedirect () {
     window.location.replace('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&state=1234');

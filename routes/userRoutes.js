@@ -16,10 +16,11 @@ router.get('/new', function(req, res) {
     message: 'Authentication complete, click sign in'
   }
   res.render('../views/partials/login.handlebars', newObject);
-})
+});
 
 // //Get request for sessions when user clicks on course
 router.get('/courses/:courseId/sessions', function(req, res) {
+  console.log(req.params)
   let hbsObject = {}
   let CourseId = req.params.courseId;
   hbsObject.CourseId = CourseId;
@@ -30,11 +31,23 @@ router.get('/courses/:courseId/sessions', function(req, res) {
       order: [['session_date', 'ASC']],
       include: [{
         model: db.Resources,
+      },
+      {
+        model: db.Ratings,
       }]
     })
     .then((sessions) => {
-      console.log(sessions);
+      console.log(sessions[0].Ratings[0]);
       hbsObject.sessions = sessions;
+
+      for (let i = 0; i < sessions.length; i++) {
+        for (let j=0; j< sessions[i].Ratings.length; j++) {
+          if (sessions[i].Ratings[j] === '1') {
+            sessions[i].Ratings[j] === [];
+          }
+        }
+      }
+      console.log('Rendering');
       res.render('../views/partials/session_card.handlebars', hbsObject)
     })
 });
