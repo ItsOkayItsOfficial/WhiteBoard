@@ -26,7 +26,6 @@
     <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{id}}" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                
                 <div class="modal-header row">
                 {{#unless session_name}}
                   <div class='col-md-6'>
@@ -43,7 +42,7 @@
                   </div>
                 {{/if}}
                 </div>
-                
+
 
                 <div class="modal-body">
                     <div class="container-fluid">
@@ -81,7 +80,7 @@
                             </div>
                         </div>
                         <br>
-                      {{#if Resources}}                        
+                      {{#if Resources}}
                         <h4> Instructor Resources </h4>
                         {{#each Resources}}
                             {{#if instructor}}
@@ -158,8 +157,8 @@
                                     </div>
                                      <button type="submit" id = "{{id}}"class="ratingSubmit btn btn-info btn-sm">Submit</button>
                               </div>
-                            </form> 
-                          {{/unless}} 
+                            </form>
+                          {{/unless}}
                         {{#if Ratings}}
                           <p> You rated this session a {{session_rating}}.
                         {{/if}}
@@ -170,13 +169,13 @@
                               <label for="exampleFormControlTextarea1" >Comment..</label>
                               <textarea class="form-control" id="commentText{{id}}" rows="3"></textarea>
                             </div>
-                          </div>  
+                          </div>
                         </div>
                          <div class='row'>
                           <div class='col-md-3'>
                           <button type="button" class="btn btn-info btn-sm commentSubmit" data-session-id="{{id}}">Comment</button>
                           </div>
-                        </div> 
+                        </div>
                           {{#each Comments}}
                             <div class="row commentRow">
                               <table>
@@ -189,7 +188,7 @@
                               </table>
                             </div>
                           {{/each}}
-                      
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
@@ -198,6 +197,8 @@
           </div>
         </div>
       </div>
+
+
 {{/each}}
 {{/unless}}
 
@@ -251,7 +252,7 @@
                         </div>
                     </div>
                         <br>
-                      {{#if Resources}}                        
+                      {{#if Resources}}
                         <h4> Instructor Resources </h4>
                         {{#each Resources}}
                             {{#if instructor}}
@@ -303,8 +304,8 @@
                                 <input type="text" class="form-control rating" id="sessionRating{{id}}" placeholder="Resource Rating">
                               </div>
                               <button type="submit" id = "{{id}}"class="ratingSubmit" class="btn btn-primary">Submit</button>
-                            </form> 
-                          {{/unless}} 
+                            </form>
+                          {{/unless}}
                         {{#if Ratings}}
                           <p> You rated this session a {{session_rating}}.
                         {{/if}}
@@ -315,13 +316,13 @@
                               <label for="exampleFormControlTextarea1" >Comment..</label>
                               <textarea class="form-control" id="commentText{{id}}" rows="3"></textarea>
                             </div>
-                          </div>  
+                          </div>
                         </div>
                          <div class='row'>
                           <div class='col-md-3'>
                           <button type="button" class="btn btn-primary btn-sm commentSubmit" data-session-id="{{id}}">Comment</button>
                           </div>
-                        </div> 
+                        </div>
                           {{#each Comments}}
                         <div class="row">
                               <table>
@@ -335,7 +336,7 @@
                               </table>
                             </div>
                           {{/each}}
-                        
+
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="row">
@@ -354,6 +355,8 @@
         </div>
       </div>
     </div>
-    
+
+
+
 {{/each}}
 {{/if}}

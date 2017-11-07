@@ -9,7 +9,9 @@ body {
 	color: white;
 }
 
+
 /* Typography */
+
 h1#title {
 	font-family: 'Permanent Marker', cursive;
 	font-weight: 250;
@@ -22,7 +24,6 @@ h1#title {
 	position: relative;
 	top: 0px;
 }
-
 
 h2 {
 	text-transform: uppercase;
@@ -37,15 +38,48 @@ p.small {
 	font-size: 0.8em;
 }
 
-/* Layout */
+#authenticatedUser {
+	background: url("../images/photo_bg.jpg") no-repeat center center fixed;
+	background-size: cover;
+	font-size: 16px;
+	position: center;
+	font-family: 'Roboto Slab', serif;
+	font-weight: 300;
+	margin: 0;
+	color: white;
+}
+
 .container {
 	margin: 0;
 }
 
-.top {
-	margin: 0;
-	padding: 0;
-	width: 100%;	
+.fadeInDown {
+	animation-name: fadeInDown;
+	-webkit-animation-name: fadeInDown;
+	-moz-animation-name: fadeInDown;
+	-o-animation-name: fadeInDown;
+}
+
+.fadeInDown {
+	animation-name: fadeInUp;
+	-webkit-animation-name: fadeInUp;
+	-moz-animation-name: fadeInUp;
+	-o-animation-name: fadeInUp;
+}
+
+#login {
+	margin-top: 0px;
+	border: 0;
+	border-radius: 2px;
+	color: white;
+	padding: 10px;
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: 0.7em;
+	letter-spacing: 1px;
+	background-color: #e09b3a;
+	cursor: pointer;
+	outline: none;
 }
 
 .login-box {
@@ -56,8 +90,12 @@ p.small {
 	top: 25px;
 	padding-bottom: 15px;
 	border-radius: 5px;
-	box-shadow: 0 5px 50px rgba(0,0,0,0.7);
+	box-shadow: 0 5px 50px rgba(0, 0, 0, 0.7);
 	text-align: center;
+	animation: 1s ease-in-out 1s;
+	-webkit-animation: 1s ease-in-out 1s;
+	-moz-animation: 1s ease-in-out 1s;
+	-o-animation: 1s ease-in-out 1s;
 }
 
 .login-box .box-header {
@@ -84,6 +122,11 @@ p.small {
 	color: #888;
 }
 
+.login-box button:hover {
+	opacity: 0.7;
+	transition: 0.5s;
+}
+
 .login-box input:focus {
 	outline: none;
 	border-color: #665851;
@@ -91,50 +134,49 @@ p.small {
 	color: #665851;
 }
 
-#login {
-	margin-top: 0px;
-	border: 0;
-	border-radius: 2px;
-	color: white;
-	padding: 10px;
-	text-transform: uppercase;
-	font-weight: 400;
-	font-size: 0.7em;
-	letter-spacing: 1px;
-	background-color: #e09b3a;
-	cursor:pointer;
-	outline: none;
-}
-
-.login-box button:hover {
-	opacity: 0.7;
-	transition: 0.5s;
-}
-
-.login-box button:hover {
-	opacity: 0.7;
-	transition: 0.5s;
-}
-
-#authenticatedUser:{
-	background: url("../images/photo_bg.jpg") no-repeat center center fixed;
-	background-size: cover;
-	font-size: 16px;
-	position: center;
-	font-family: 'Roboto Slab', serif;
-	font-weight: 300;
-	margin: 0;
-	color: white;
-}
-
-/* Animation Delay */
 #logo {
-  -webkit-animation-duration: 1s;
-  -webkit-animation-delay: 2s;
+	animation: 1s ease-in-out 2s;
+	-webkit-animation: 1s ease-in-out 2s;
+	-moz-animation: 1s ease-in-out 2s;
+	-o-animation: 1s ease-in-out 2s;
 }
 
-.login-box {
-  -webkit-animation-duration: 1s;
-  -webkit-animation-delay: 1s;
+.top {
+	margin: 0;
+	padding: 0;
+	width: 100%;
 }
 
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -100%, 0);
+		-webkit-transform: translate3d(0, -100%, 0);
+		-moz-transform: translate3d(0, -100%, 0);
+		-o-transform: translate3d(0, -100%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+		-webkit-transform: none;
+		-moz-transform: none;
+		-o-transform: none;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 100%, 0);
+		-webkit-transform: translate3d(0, 100%, 0);
+		-moz-transform: translate3d(0, 100%, 0);
+		-o-transform: translate3d(0, 100%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+		-webkit-transform: none;
+		-moz-transform: none;
+		-o-transform: none;
+	}
+}
