@@ -1,11 +1,11 @@
 {{!-- Session Card --}}
 
 <h1 class= "courseId" data-id={{CourseId}}>{{course_name}}</h1>
+{{#if instructor}}
 {{#each sessions}}
     <div id={{id}} class="card sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
         <div class="card-header">
             <img class="icon" src=' {{subject_avatar}} '> {{subject}}
-            <small class="text-muted" style="float:right">Attendance {{attendance}} </small>
         </div>
 
         <div class="card-block">
@@ -17,9 +17,9 @@
         <div class="card-footer">
             <small class="text-muted">Comments ({{Comments.length}}) </small>
             <small class="text-muted">Resources ({{Resources.length}}) </small>
-            <small class="text-muted">Updated {{updated}} </small>
         </div>
     </div>
+
 
 
 
@@ -28,7 +28,7 @@
             <div class="modal-content">
                 <div class="modal-header"
                     <h4 class="modal-title"> {{session_name}} </h4>
-                    <p class="modal-subtitle text-muted">Date: {{session_date}} | Time: {{course_time}} </p>
+                    <p class="modal-subtitle text-muted">Date: {{session_date}}</p>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                         <br>
-                      {{#if Resources}}
+                      {{#if Resources}}                        
                         <h4> Instructor Resources </h4>
                         {{#each Resources}}
                             {{#if instructor}}
@@ -159,3 +159,4 @@
 
     
 {{/each}}
+{{/if}}

@@ -30,6 +30,8 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
     })
     .then((result) => {
       hbsObject.userId = result.dataValues.id;
+      hbsObject.instructor = result.dataValues.instructor;
+      console.log(hbsObject.instructor)
       // let userId = result.dataValues.id;
     return db.Sessions.findAll({
       where: {
