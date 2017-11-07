@@ -15,34 +15,26 @@
 
                 <a href="#menu1" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
                     <i class="fa fa-dashboard"></i>
-                    <span class="hidden-sm-down">Item 1</span>
+                    <span class="hidden-sm-down">About</span>
                 </a>
                 <div id="menu1" class="collapse">
-                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 1</a>
-                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 2</a>
-                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 3</a>
+                    <li class="list-group-item" data-parent="#menu2">
+                        <p> {{user.user_desc}} </p>
+                    </li>
                 </div>
 
                 <a href="#menu2" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
                     <i class="fa fa-dashboard"></i>
-                    <span class="hidden-sm-down">Item 2</span>
+                    <span class="hidden-sm-down">Contact</span>
                 </a>
                 <div id="menu2" class="collapse">
-                    <a href="#" class="list-group-item" data-parent="#menu2">Subitem 1</a>
-                    <a href="#" class="list-group-item" data-parent="#menu2">Subitem 2</a>
-                    <a href="#" class="list-group-item" data-parent="#menu2">Subitem 3</a>
+                    <li class="list-group-item" data-parent="#menu2">
+                        <p> {{user.user_email}} </p>
+                    </li>
+                    <li class="list-group-item" data-parent="#menu2">
+                        <p> {{user.user_phone}} </p>
+                    </li>
                 </div>
-
-                <a href="#menu3" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
-                    <i class="fa fa-dashboard"></i>
-                    <span class="hidden-sm-down">Item 3</span>
-                </a>
-                <div id="menu3" class="collapse">
-                    <a href="#" class="list-group-item" data-parent="#menu3">Subitem 1</a>
-                    <a href="#" class="list-group-item" data-parent="#menu3">Subitem 2</a>
-                    <a href="#" class="list-group-item" data-parent="#menu3">Subitem 3</a>
-                </div>
-
             </div>
         </div>
         {{!-- /#userInfo --}}
@@ -63,12 +55,6 @@
                 <div id="profile" class="tab-pane active">
 
                     <div class="row">
-                        {{!-- About --}}
-                        <div class="col-md-6">
-                            <h3>About</h3>
-                            <p> {{user.user_email}} </p>
-                            <p> {{user.user_desc}} </p>
-                        </div>
 
                         {{!-- Courese Enrolled in List --}}
                         <div id="enrollment" class="col-md-6">
@@ -78,7 +64,7 @@
                                 <p id="{{id}}"> {{course_name}} </p>
                             </a>
                             <p> {{course_day}} | {{course_time}} </p>
-                            <p> {{course_desc}}</p>
+                            <p> {{course_desc}} </p>
                             {{/each}}
                         </div>
                         {{!-- /#enrollment --}}
@@ -86,6 +72,7 @@
                     {{!-- /row --}}
 
                     {{!-- Resources Starred and Added List --}}
+                {{#if Resources}}
                     <div id="resources" class="col-md-12">
                         <h5 class="mt-2">
                             <span class="fa fa-clock-o ion-clock float-right"></span>Starred Resources</h5>
@@ -97,15 +84,13 @@
                                 <tr>
                                     <td>
                                         {{!-- From resources table --}}
-
                                         <a href="{{Resource.resource_url}}" target="_blank">
                                             {{Resource.resource_desc}}
                                         </a>
                                         <p>
                                             <a href=' {{session_url}} '> {{session_name}} </a> |
                                             <a href=' {{subject_url}} '> {{subject}} </a>
-                                            Session: {{SessionId}}
-                                            Course: {{Course.course_name}}
+                                            Session: {{SessionId}} Course: {{Course.course_name}}
                                         </p>
                                     </td>
                                 </tr>
@@ -113,6 +98,7 @@
                             </tbody>
                         </table>
                     </div>
+                    {{/if}}
                 </div>
                 {{!-- /#profile --}}
 
