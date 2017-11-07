@@ -143,7 +143,7 @@ $('#submitNewCourse').on('click', function(e) {
       console.log(courseId);
       console.log(currentURL);
       window.location.href = currentURL + "/user/" + usersLocalStorage.login + '/courses/' + courseId + '/sessions'
-  }))
+  }));
 
   //Posts a resource
   $('.resourceSubmit').on('click', function(e) {
@@ -161,7 +161,7 @@ $('#submitNewCourse').on('click', function(e) {
     $.post('/api/sessions/resources', newResource, ((data) => {
       console.log(data);
       window.location.reload();
-    }))
+    }));
 
   });
 
@@ -177,7 +177,7 @@ $('#submitNewCourse').on('click', function(e) {
       $.post('/api/sessions/rating', newRating, ((data) => {
         console.log(data);
         window.location.reload();
-      }))
+      }));
   });
 
 
@@ -195,8 +195,8 @@ $('#submitNewCourse').on('click', function(e) {
     $.post('/api/sessions/starredResources', newStarredResource, ((data) => {
       console.log(data);
       window.location.reload();
-    }))
-  })
+    }));
+  });
 
   $('.commentSubmit').on('click', function(e) {
     e.preventDefault();
@@ -213,6 +213,7 @@ $('#submitNewCourse').on('click', function(e) {
     console.log(data);
     window.location.reload();
   }))
-  })
+  });
 
+  
 });

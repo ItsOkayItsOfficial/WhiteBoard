@@ -139,3 +139,12 @@ a {
   height: 50px;
 }
 
+.commentRow {
+  margin: 15px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.commenterName {
+  color: black;
+}
