@@ -36,7 +36,7 @@ app.use(routes);
 
 db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', {raw: true}).
   then((result) => {
-    db.sequelize.sync().then(function() {
+    db.sequelize.sync({}).then(function() {
       app.listen(PORT, function () {
         console.log("App listening on PORT " + PORT);
       });
