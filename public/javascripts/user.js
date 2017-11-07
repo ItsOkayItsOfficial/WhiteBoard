@@ -150,14 +150,14 @@ $('#submitNewCourse').on('click', function(e) {
     e.preventDefault();
     let sessionId = $(this).attr('id');
     let newResource = {
-      courseId: $('#CourseId').html(),
+      courseId: $('.courseId').attr('data-id'),
       userName: usersLocalStorage.login,
       resourceTitle: $('#resourceTitle' + sessionId).val(),
       resourceUrl: $('#resourceUrl' + sessionId).val(),
       resourceDesc: $('#resourceDesc' + sessionId).val(),
       sessionId
     };
-
+    console.log(newResource);
     $.post('/api/sessions/resources', newResource, ((data) => {
       console.log(data);
       window.location.reload();
@@ -169,7 +169,7 @@ $('#submitNewCourse').on('click', function(e) {
     e.preventDefault();
 
       let newRating = {
-        SessionId: $(this).attr('id'),
+        SessionId: $(this).data('CourseId'),
         rating: $("#sessionRating" + $(this).attr('id')).val(),
         userName: usersLocalStorage.login,
       }
@@ -188,13 +188,30 @@ $('#submitNewCourse').on('click', function(e) {
     let sessionId = $(this).data("sessionId");
     let newStarredResource = {
       sessionId,
-      courseId: $('#CourseId').data('CourseId'),
+      courseId: $('.courseId').attr('data-id'),
       userName: usersLocalStorage.login,
       resourceId,
     }
     $.post('/api/sessions/starredResources', newStarredResource, ((data) => {
       console.log(data);
     }))
+  })
+
+  $('.commentSubmit').on('click', function(e) {
+    e.preventDefault();
+    let sessionId = $(this).data("sessionId");
+    let courseId = $('.courseId').attr('data-id'); 
+    let newComment = {
+      sessionId,
+      courseId,
+      userName: usersLocalStorage.login,
+      commentText: $('#commentText' + sessionId).val()
+    }
+
+  $.post('/api/sessions/comments', newComment, ((data) => {
+    console.log(data);
+    window.location.reload();
+  }))
   })
 
 });

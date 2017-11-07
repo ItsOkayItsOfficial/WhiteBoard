@@ -42,6 +42,10 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
       },
       {
         model: db.Ratings,
+      },
+      {
+        model: db.Comments,
+        order: [["createdAt", "DESC"]]
       }]
     })
     })
@@ -294,4 +298,37 @@ router.post('/api/sessions/starredResources', ((req, res) => {
     res.json('Resource starred')
   })
 }));
+
+router.post('/api/sessions/comments', function(req, res) {
+  //find all sessions from the course
+    return db.Sessions.findAll({
+      where: {
+        CourseId: req.body.courseId
+      }
+    })
+    .then((result) => {
+      //finds the user
+      return db.Users.findOne({
+        where: {
+          user_login: req.body.userName
+        }
+      })
+    })
+    .then((result) => {
+      let userId = result.dataValues.id;
+      let userAvatar = result.dataValues.user_avatar;
+      //creates comment tied to a specific session
+      return db.Comments.create({
+        CourseId: req.body.courseId,
+        SessionId: req.body.sessionId,
+        UserId: userId,
+        user_login: req.body.userName,
+        user_avatar: userAvatar,
+        comment_text: req.body.commentText
+      })
+    })
+    .then((result) => {
+      res.json('created comment');
+    })
+})
 module.exports = router;

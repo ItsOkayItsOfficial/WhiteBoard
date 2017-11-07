@@ -16,6 +16,7 @@ module.exports = function(sequelize, DataTypes) {
     sessions.belongsTo(models.Courses);
     sessions.hasMany(models.Resources);
     sessions.hasMany(models.Ratings);
+    sessions.hasMany(models.Comments);
   }
   return sessions;
 };

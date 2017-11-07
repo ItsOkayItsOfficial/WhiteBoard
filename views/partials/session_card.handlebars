@@ -1,6 +1,6 @@
 {{!-- Session Card --}}
 
-<h1 data-course-id={{CourseId}}>{{course_name}}</h1>
+<h1 class= "courseId" data-id={{CourseId}}>{{course_name}}</h1>
 {{#each sessions}}
     <div id={{id}} class="card sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
         <div class="card-header">
@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-footer">
-            <small class="text-muted">Comments ({{comment_count}}) </small>
+            <small class="text-muted">Comments ({{Comments.length}}) </small>
             <small class="text-muted">Resources ({{Resources.length}}) </small>
             <small class="text-muted">Updated {{updated}} </small>
         </div>
@@ -82,9 +82,34 @@
                         {{#if Ratings}}
                           <p> You rated this session a {{session_rating}}.
                         {{/if}}
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3"></div>
                         </div>
+                         <div class='row'>
+                          <div class='col-md-12'>
+                            <div class="form-group">
+                              <label for="exampleFormControlTextarea1" >Comment..</label>
+                              <textarea class="form-control" id="commentText{{id}}" rows="3"></textarea>
+                            </div>
+                          </div>  
+                        </div>
+                         <div class='row'>
+                          <div class='col-md-3'>
+                          <button type="button" class="btn btn-primary btn-sm commentSubmit" data-session-id="{{id}}">Comment</button>
+                          </div>
+                        </div> 
+                          {{#each Comments}}
+                        <div class="row">
+                              <table>
+                                      <tr>
+                                          <td><img src={{user_avatar}} class="commentImg" /></td>
+                                          <td><span class="name">By: {{user_login}} Posted at: {{createdAt}}</span></td>
+                                          <td> <span class="comment">
+                                              {{comment_text}}
+                                          </span></td>
+                                      </tr>
+                              </table>
+                            </div>
+                          {{/each}}
+                        
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="row">
@@ -95,13 +120,16 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
-                </div>
+              </div>
             </div>
         </div>
+      </div>
     </div>
+    
+
+    
 {{/each}}
