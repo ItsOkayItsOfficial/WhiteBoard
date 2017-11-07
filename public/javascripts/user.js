@@ -188,7 +188,7 @@ $('#submitNewCourse').on('click', function(e) {
     let sessionId = $(this).data("sessionId");
     let newStarredResource = {
       sessionId,
-      courseId: $('#CourseId').html(),
+      courseId: $('#CourseId').data('CourseId'),
       userName: usersLocalStorage.login,
       resourceId,
     }
