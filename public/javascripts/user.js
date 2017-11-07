@@ -164,7 +164,7 @@ $('#submitNewCourse').on('click', function(e) {
     }));
 
   });
-
+//On click when a user submits a rating
   $('.ratingSubmit').on('click', function(e) {
     e.preventDefault();
 
@@ -180,7 +180,7 @@ $('#submitNewCourse').on('click', function(e) {
       }));
   });
 
-
+//When a user stars a resource, posts it
   $('.starResource').on('click', function(e) {
     e.preventDefault();
     let resourceId = $(this).attr('id');
@@ -197,7 +197,7 @@ $('#submitNewCourse').on('click', function(e) {
       window.location.reload();
     }));
   });
-
+//when a user comments, posts it
   $('.commentSubmit').on('click', function(e) {
     e.preventDefault();
     let sessionId = $(this).data("sessionId");
@@ -214,7 +214,7 @@ $('#submitNewCourse').on('click', function(e) {
     window.location.reload();
   }))
   });
-
+//when instructor submits session description
     $('.sessionDescSubmit').on('click', function(e) {
     e.preventDefault();
     let sessionId = $(this).attr("id");
@@ -227,9 +227,9 @@ $('#submitNewCourse').on('click', function(e) {
       sessionDesc: $('#sessionDesc' + sessionId).val()
     }
     console.log(sessionInfo);
-  $.post('/api/sessions/sessionInfo', sessionInfo, ((data) => {
-    console.log(data);
-    window.location.reload();
+      $.post('/api/sessions/sessionInfo', sessionInfo, ((data) => {
+        console.log(data);
+        window.location.reload();
   }))
   });
 });
