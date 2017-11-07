@@ -19,10 +19,19 @@ router.get('/new', function(req, res) {
 })
 
 // //Get request for sessions when user clicks on course
-router.get('/courses/:courseId/sessions', function(req, res) {
+router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
+  console.log(req.params)
   let hbsObject = {}
   let CourseId = req.params.courseId;
   hbsObject.CourseId = CourseId;
+    return db.Users.findOne({
+      where: {
+        user_login: req.params.userName
+      }
+    })
+    .then((result) => {
+      hbsObject.userId = result.dataValues.id;
+      // let userId = result.dataValues.id;
     return db.Sessions.findAll({
       where: {
         CourseId
@@ -30,11 +39,22 @@ router.get('/courses/:courseId/sessions', function(req, res) {
       order: [['session_date', 'ASC']],
       include: [{
         model: db.Resources,
+      },
+      {
+        model: db.Ratings,
       }]
     })
+    })
     .then((sessions) => {
-      console.log(sessions);
       hbsObject.sessions = sessions;
+      //if user has already given a rating for the session, they cannot rate again
+      for (let i = 0; i < sessions.length; i++) {
+        for (let j=0; j< sessions[i].Ratings.length; j++) {
+          if (sessions[i].Ratings[j] === hbsObject.userId) {
+            sessions[i].Ratings[j] === [];
+          }
+        }
+      }
       res.render('../views/partials/session_card.handlebars', hbsObject)
     })
 });
