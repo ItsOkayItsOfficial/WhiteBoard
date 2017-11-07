@@ -76,8 +76,12 @@ a {
 }
 
 #userAvatar {
-  width: 150px;
+  width: 50px;
   background-color: white;
+  transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
 }
 
 #userInfo {
@@ -131,6 +135,10 @@ a {
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   -o-transition: all .5s ease-in-out;
+}
+
+#userInfo.active #userAvatar {
+  width: 150px;
 }
 
 .commentImg {
