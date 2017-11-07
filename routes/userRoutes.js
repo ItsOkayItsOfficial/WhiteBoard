@@ -147,7 +147,15 @@ router.get('/user/:username', function(req, res, next) {
     })
     .then((starredResources) => {
       hbsObject.starredResources = starredResources;
-      res.render('../views/partials/profileAdmin.handlebars', hbsObject)
+      return db.Comments.findAll({
+        where: {
+          userId: hbsObject.user.id
+        }
+      })
+    })
+    .then((comments) => {
+      hbsObject.comments = comments;
+    res.render('../views/partials/profileAdmin.handlebars', hbsObject)
     })
   .catch(next);
 });
@@ -347,7 +355,7 @@ router.post('/api/sessions/sessionInfo', function(req, res) {
   return db.Sessions.update(values, selector)
 .then((result) => {
   console.log(result);
-  console.log('Session updated');
+  res.json('Session updated');
 })
 });
 module.exports = router;
