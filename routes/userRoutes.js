@@ -230,6 +230,7 @@ router.post('/api/sessions/resources', function(req, res) {
       })
     })
     .then((result) => {
+      console.log(result);
       res.json('created resource');
     })
 })

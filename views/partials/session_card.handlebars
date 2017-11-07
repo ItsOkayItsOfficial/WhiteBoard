@@ -26,20 +26,16 @@
     <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{id}}" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header"
-<<<<<<< HEAD
+
+                <div class="modal-header">
                     <input class="form-control" type="text" id="{{session_name}}">
                         <h4 class="modal-title">Sessions Name</h4> <hr>
-                    </input>
                     <p class="modal-subtitle text-muted">Date & Time: {{session_date}} {{course_time}} </p>
-=======
-                    <h4 class="modal-title"> {{session_name}} </h4>
-                    <p class="modal-subtitle text-muted">Date: {{session_date}}</p>
->>>>>>> 5536b780c66faf00cceb2d2b8bb9ca2c2e1b5c24
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                
 
                 <div class="modal-body">
                     <div class="container-fluid">
@@ -48,7 +44,7 @@
                                 <h6><b>Course Description</b></h6>
                                     <div class="form-group">
                                       <textarea class="form-control" rows="5" id="comment"></textarea>
-                                        <button type="submit" class="btn btn-info btn-sm"">Add</button>
+                                        <button type="submit" class="btn btn-info btn-sm">Add</button>
                                     </div>
                             </div>
                         </div>
@@ -56,22 +52,22 @@
                             <div class="col-md-6">
                                 <h6><b>Course Activities</b></h6>
                                     <div class="form-group">
-                                      <textarea class="form-control" rows="1" id="addActivitiy"></textarea>
-                                        <button type="submit" class="btn btn-info btn-sm"">Add</button>
+                                      <textarea class="form-control" rows="1" id="addActivity"></textarea>
+                                        <button type="submit" class="btn btn-info btn-sm">Add</button>
                                     </div>
                             </div>
                             <div class="col-md-6">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="resourceText"><h6><b>Add A Resource</b></h6></label>
-                                        <textarea class="form-control" rows="1" id="resourceTitle{{id}}" placeholder="Resource Title"></textarea>
-                                        <textarea class="form-control" rows="1" id="resourceUrl{{id}}" placeholder="Resource URL"></textarea>
-                                        <textarea class="form-control" rows="1" id="resourceDesc{{id}}" placeholder="Resource Description"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-info btn-sm" id = "{{id}}">Add</button>
-                                </form>
+                              <form>
+                                <div class="form-group">
+                                  <label for="resourceText">Resource</label>
+                                  <input type="text" class="form-control" id= "resourceTitle{{id}}" placeholder="Resource Title">
+                                  <input type="text" class="form-control" id= "resourceUrl{{id}}" placeholder="Resource URL">
+                                  <input type="text" class="form-control" id="resourceDesc{{id}}" placeholder="Resource Description">
+                                </div>
+                                <button type="submit" id = "{{id}}"class="resourceSubmit" class="btn btn-primary">Submit</button>
+                              </form>
+                            </div>
                         </div>
-                    </div>
                         <br>
                       {{#if Resources}}                        
                         <h4> Instructor Resources </h4>
@@ -170,7 +166,7 @@
                           </div>
                         </div> 
                           {{#each Comments}}
-                        <div class="row commentRow">
+                            <div class="row commentRow">
                               <table>
                                       <tr>
                                           <td><img src={{user_avatar}} class="commentImg"/><span class="comment">{{comment_text}} </span> </td>
@@ -181,29 +177,18 @@
                               </table>
                             </div>
                           {{/each}}
-                        
-                        <div class="row">
-                            <div class="col-sm-9">
-                                <div class="row">
-                                    <div class="col-8 col-sm-6">
-                                    </div>
-                                    <div class="col-4 col-sm-6">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
-    </div>
-    
 
-    
+     
 {{/each}}
 {{/if}}
 
