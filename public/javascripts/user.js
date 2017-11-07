@@ -141,7 +141,8 @@ $('#submitNewCourse').on('click', function(e) {
       e.preventDefault();
       let courseId = $(e.target)[0].id;
       console.log(courseId);
-      window.location.href = currentURL + '/courses/' + courseId + '/sessions'
+      console.log(currentURL);
+      window.location.href = currentURL + "/user/" + usersLocalStorage.login + '/courses/' + courseId + '/sessions'
   }))
 
   //Posts a resource
@@ -155,7 +156,7 @@ $('#submitNewCourse').on('click', function(e) {
       resourceUrl: $('#resourceUrl' + sessionId).val(),
       resourceDesc: $('#resourceDesc' + sessionId).val(),
       sessionId
-    }
+    };
 
     $.post('/api/sessions/resources', newResource, ((data) => {
       console.log(data);
@@ -178,6 +179,7 @@ $('#submitNewCourse').on('click', function(e) {
         window.location.reload();
       }))
   });
+
 
   $('.starResource').on('click', function(e) {
     e.preventDefault();
