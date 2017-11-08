@@ -317,8 +317,8 @@ p.small {
 
 #userInfo {
   width: 100px;
-  padding: 10px;
-  margin: -50px 0 -50px -40px;
+  padding: 25px;
+  margin: -50px 5px -50px -40px;
   transition: all .5s ease-in-out;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
@@ -329,7 +329,7 @@ p.small {
   height: 100vh;
   width: 5px;
   float: right;
-  margin: -10px;
+  margin: -15px;
   background-color: #222;
   transition: all .5s ease-in-out;
   -webkit-transition: all .5s ease-in-out;
@@ -360,8 +360,17 @@ p.small {
   background-color: #222;
 }
 
+#userInfo .list-group-item span {
+  visibility: hidden;
+  transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+}
+
 #userInfo.active {
   width: 250px;
+  padding: 15px;
   transition: all .5s ease-in-out;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
@@ -370,6 +379,10 @@ p.small {
 
 #userInfo.active #userAvatar {
   width: 150px;
+}
+
+#userInfo.active .list-group-item span {
+  visibility: visible;
 }
 
 @keyframes fadeInDown {

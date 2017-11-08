@@ -6,9 +6,12 @@ let redirectUri = 'http://127.0.0.1:3000/new';
 let usersLocalStorage = JSON.parse(localStorage.getItem('User'));
 console.log(usersLocalStorage);
 
+// onClick - profile sidebar toggle
+$('#slide').on('click', function () {
+  $('#userInfo').toggleClass('active');
+});
 
-
-//Redirects user to github to be authenticated
+// Redirect - user to github to be authenticated
 function gitHubRedirect () {
     window.location.replace('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&state=1234');
 };
@@ -42,22 +45,22 @@ function userAuthentication() {
           window.location.href = currentURL + '/user/' + data.user_login;
       });
     });
-  }); 
+  });
 };
 
-//Initial log in button before authentication
+// onClick - Initial log in button before authentication
 $('#login').on('click', function(event) {
     event.preventDefault();
     gitHubRedirect();
 });
 
-//Login button that appears after authentication
+// onClick - Login button that appears after authentication
 $('#authenticatedUser').on('click', function(event) {
   event.preventDefault();
   userAuthentication();
 });
 
-  //When user submits a new course
+  // onClick - When user submits a new course
 $('#submitNewCourse').on('click', function(e) {
   const weekInMiliseconds = 604800000;
   const dayInMiliseconds = 86400000;
@@ -204,7 +207,7 @@ $('#submitNewCourse').on('click', function(e) {
   $('.commentSubmit').on('click', function(e) {
     e.preventDefault();
     let sessionId = $(this).data("sessionId");
-    let courseId = $('.courseId').attr('data-id'); 
+    let courseId = $('.courseId').attr('data-id');
     let newComment = {
       sessionId,
       courseId,
@@ -221,7 +224,7 @@ $('#submitNewCourse').on('click', function(e) {
     $('.sessionDescSubmit').on('click', function(e) {
     e.preventDefault();
     let sessionId = $(this).attr("id");
-    let courseId = $('.courseId').attr('data-id'); 
+    let courseId = $('.courseId').attr('data-id');
     let sessionInfo = {
       sessionId,
       courseId,
