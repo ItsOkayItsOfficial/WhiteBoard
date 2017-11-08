@@ -15,7 +15,6 @@ animate.css
 
 # Node & NPM
 node_modules/
-config.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
