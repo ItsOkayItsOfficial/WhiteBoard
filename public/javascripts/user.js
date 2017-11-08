@@ -229,12 +229,26 @@ $('#submitNewCourse').on('click', function(e) {
       sessionTitle: $('#sessionTitle' + sessionId).val(),
       sessionDesc: $('#sessionDesc' + sessionId).val()
     }
-    console.log(sessionInfo);
       $.post('/api/sessions/sessionInfo', sessionInfo, ((data) => {
         console.log(data);
         window.location.reload();
   }))
   });
+
+    $('.enrollCourse').on('click', function(e) {
+      e.preventDefault();
+      let courseId = $(this).attr('id');
+      let userName = usersLocalStorage.login;
+
+      let newStudent = {
+        courseId,
+        userName
+      }
+      $.post('/api/enrollment', newStudent, ((data) => {
+        console.log(data);
+        window.location.reload();
+      }))
+    })
 
 
 });

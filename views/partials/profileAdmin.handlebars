@@ -1,3 +1,4 @@
+{{#unless instructor}}
 <div class="container">
     <div class="row">
 
@@ -52,6 +53,9 @@
                 <li class="nav-item">
                     <a href="/user/" data-target="#edit" data-toggle="tab" class="nav-link">New Course</a>
                 </li>
+                <li class="nav-item">
+                    <a href="/user/" data-target="#allCourses" data-toggle="tab" class="nav-link">All Courses</a>
+                </li>
             </ul>
 
             <div class="tab-content py-6">
@@ -84,7 +88,8 @@
                     </div>
                     {{/if}}
                 </div>
-                {{!-- /#profile --}} {{!-- Courses Pane --}}
+                {{!-- /#profile --}} 
+                {{!-- Courses Pane --}}
                 <div id="courses" class="tab-pane">
                     <h3>All Courses</h3>
                     <div class="row">
@@ -112,7 +117,38 @@
                     </div>
                     {{!-- /row --}}
                 </div>
-                {{!-- /#courses --}} {{!-- Edit Pane --}}
+                {{!-- /#courses --}}
+                {{!--All Courses Pane --}}
+                <div id="allCourses" class="tab-pane">
+                    <h3>All Courses</h3>
+                    <div class="row">
+
+                        {{!-- Courese Enrolled in List --}}
+                        <div id="enrollment" class="col-md-10 card-deck">
+                            {{!-- From courses table --}} {{#each allCourses}}
+
+                            <div class="col-md-4 card text-white">
+                                <div class="card-header selectedCourse" href="{{course_url}}">
+                                    <small> {{course_day}} | {{course_time}} </small>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"> {{course_name}} </h4>
+                                    <small class="card-text"> {{course_desc}} </small>
+                                </div>
+                                <div class="card-footer">
+                                    <a  class="btn btn-primary enrollCourse" id="{{id}}">Enroll</a>
+                                </div>
+                            </div>
+
+                            {{/each}}
+                        </div>
+                        {{!-- /#enrollment --}}
+                    </div>
+                    {{!-- /row --}}
+                </div>
+                {{!-- /#allcourses --}} 
+                
+                {{!-- Edit Pane --}}
                 <div class="tab-pane" id="edit">
                     <form role="form">
                         <div class="form-group row">
@@ -169,8 +205,10 @@
 </div>
 {{!-- /.container --}}
 
-{{!-- <script>
+ <script>
     $('#slide').on('click', function () {
         $('#userInfo').toggleClass('active');
     });
-</script> --}}
+</script> 
+
+{{/unless}}
