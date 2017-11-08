@@ -140,6 +140,7 @@ $('#submitNewCourse').on('click', function(e) {
   $('.selectedCourse').on('click', ((e) => {
       e.preventDefault();
       let courseId = $(e.target)[0].id;
+      console.log($(this).attr('id'));
       console.log(courseId);
       console.log(currentURL);
       window.location.href = currentURL + "/user/" + usersLocalStorage.login + '/courses/' + courseId + '/sessions'
@@ -193,6 +194,7 @@ $('#submitNewCourse').on('click', function(e) {
       userName: usersLocalStorage.login,
       resourceId,
     }
+    console.log(newStarredResource)
     $.post('/api/sessions/starredResources', newStarredResource, ((data) => {
       console.log(data);
       window.location.reload();

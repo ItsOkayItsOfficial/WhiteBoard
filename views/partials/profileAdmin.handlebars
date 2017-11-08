@@ -57,30 +57,7 @@
             <div class="tab-content py-6">
                 {{!-- Profile Pane --}}
                 <div id="profile" class="tab-pane active">
-<<<<<<< HEAD
-
-                    <div class="row">
-
-                        {{!-- Courese Enrolled in List --}}
-                        <div id="enrollment" class="col-md-6">
-                            <h3>All Courses</h3>
-                            {{!-- From courses table --}} {{#each courses}}
-                            <a class="selectedCourse" id="{{id}}" href="{{course_url}}">
-                                <p id="{{id}}"> {{course_name}} </p>
-                            </a>
-                            <p> {{course_day}} | {{course_time}} </p>
-                            <p> {{course_desc}} </p>
-                            {{/each}}
-                        </div>
-                        {{!-- /#enrollment --}}
-                    </div>
-                    {{!-- /row --}}
-
-                    {{!-- Resources Starred and Added List --}}
-                {{#if starredResources}}
-=======
-                    {{!-- Resources Starred and Added List --}} {{#if Resources}}
->>>>>>> b1a5f514d308f6e872595d81f4201dcbc6c4ded4
+                    {{!-- Resources Starred and Added List --}} {{#if starredResources}}
                     <div id="resources" class="col-md-12">
                         <h5 class="mt-2">Starred Resources</h5>
 
@@ -125,7 +102,7 @@
                                     <small class="card-text"> {{course_desc}} </small>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="{{course_url}}" class="btn btn-primary">Course Sessions</a>
+                                    <a  class="btn btn-primary selectedCourse" id="{{id}}">Course Sessions</a>
                                 </div>
                             </div>
 
@@ -192,8 +169,8 @@
 </div>
 {{!-- /.container --}}
 
-<script>
+{{!-- <script>
     $('#slide').on('click', function () {
         $('#userInfo').toggleClass('active');
     });
-</script>
+</script> --}}

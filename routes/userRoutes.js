@@ -146,6 +146,7 @@ router.get('/user/:username', function(req, res, next) {
     })
     })
     .then((starredResources) => {
+      console.log(starredResources);
       hbsObject.starredResources = starredResources;
       return db.Comments.findAll({
         where: {
@@ -313,6 +314,7 @@ router.post('/api/sessions/starredResources', ((req, res) => {
     })
   })
   .then((result) => {
+    console.log(result);
     res.json('Resource starred')
   })
 }));
