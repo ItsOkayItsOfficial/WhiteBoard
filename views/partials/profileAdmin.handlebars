@@ -8,7 +8,7 @@
 
             <div class="col-lg-12">
                 <img id="userAvatar" src=" {{user.user_avatar}} " class="rounded-circle" alt="">
-                <h5 class="mb-3"> {{user.user_name}} </h5>
+                <h5 id="userName" class="mb-3"> {{user.user_name}} </h5>
             </div>
 
             <div class="list-group panel">
@@ -40,20 +40,24 @@
         </div>
         {{!-- /#userInfo --}}
 
-        <div class="col-lg-8 order-lg-2">
+        <div class="col-lg-9 panes order-lg-2">
             {{!-- Pane tabs --}}
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
                 </li>
                 <li class="nav-item">
+                    <a href="/user/" data-target="#courses" data-toggle="tab" class="nav-link">Courses</a>
+                </li>
+                <li class="nav-item">
                     <a href="/user/" data-target="#edit" data-toggle="tab" class="nav-link">New Course</a>
                 </li>
             </ul>
 
-            <div class="tab-content py-4">
+            <div class="tab-content py-6">
                 {{!-- Profile Pane --}}
                 <div id="profile" class="tab-pane active">
+<<<<<<< HEAD
 
                     <div class="row">
 
@@ -74,9 +78,11 @@
 
                     {{!-- Resources Starred and Added List --}}
                 {{#if starredResources}}
+=======
+                    {{!-- Resources Starred and Added List --}} {{#if Resources}}
+>>>>>>> b1a5f514d308f6e872595d81f4201dcbc6c4ded4
                     <div id="resources" class="col-md-12">
-                        <h5 class="mt-2">
-                            <span class="fa fa-clock-o ion-clock float-right"></span>Starred Resources</h5>
+                        <h5 class="mt-2">Starred Resources</h5>
 
 
                         <table class="table table-sm table-hover table-striped">
@@ -101,29 +107,35 @@
                     </div>
                     {{/if}}
                 </div>
-                {{!-- /#profile --}}
+                {{!-- /#profile --}} {{!-- Courses Pane --}}
+                <div id="courses" class="tab-pane">
+                    <h3>All Courses</h3>
+                    <div class="row">
 
-                {{!-- Messages Pane --}}
-                <div id="messages" class="tab-pane">
-                    <div class="alert alert-info alert-dismissable">
-                        <a class="panel-close close" data-dismiss="alert">×</a> This is an
-                        <strong>.alert</strong>. Use this to show important messages to the user.
+                        {{!-- Courese Enrolled in List --}}
+                        <div id="enrollment" class="col-md-10 card-deck">
+                            {{!-- From courses table --}} {{#each courses}}
+
+                            <div class="col-md-4 card text-white">
+                                <div class="card-header selectedCourse" href="{{course_url}}">
+                                    <small> {{course_day}} | {{course_time}} </small>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"> {{course_name}} </h4>
+                                    <small class="card-text"> {{course_desc}} </small>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="{{course_url}}" class="btn btn-primary">Course Sessions</a>
+                                </div>
+                            </div>
+
+                            {{/each}}
+                        </div>
+                        {{!-- /#enrollment --}}
                     </div>
-
-                    <table class="table table-hover table-striped">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    {{!-- MESSAGE --}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                    {{!-- /row --}}
                 </div>
-                {{!-- /#messages --}}
-
-                {{!-- Edit Pane --}}
+                {{!-- /#courses --}} {{!-- Edit Pane --}}
                 <div class="tab-pane" id="edit">
                     <form role="form">
                         <div class="form-group row">

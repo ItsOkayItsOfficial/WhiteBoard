@@ -12,7 +12,7 @@ body {
 
 /* Typography */
 
-h1#title {
+#login-title {
 	font-family: 'Permanent Marker', cursive;
 	font-weight: 250;
 	font-size: 5em;

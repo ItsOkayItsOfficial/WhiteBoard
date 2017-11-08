@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-	<meta charset="utf-8">
-	<title>Whiteboard | Sign In</title>
-
-	<!-- Google Fonts -->
-	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Permanent+Marker:400,100,300,700' rel='stylesheet' type='text/css'>
-
-	{{!-- <link rel="stylesheet" href="public/stylesheets/animate.css"> --}}
-	<!-- Custom Stylesheet -->
-	<link rel="stylesheet" href="public/stylesheets/login.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
-</head>
-
-<body>
 	<div class="container">
 		<div class="top">
-			<h1 id="title" class="hidden"><span id="logo"> Whiteboard </span></h1>
+			<h1 id="login-title" class="hidden"><span id="logo"> Whiteboard </span></h1>
 		</div>
 		<br/><br/>
 
@@ -49,11 +32,10 @@
 			<a href="https://github.com/password_reset"><p class="small">Forgot your password?</p></a>
 		</div>
 </div>
-</body>
+
 <script>
 	$(document).ready(function () {
     	$('#logo').addClass('animated fadeInDown');
     	$("input:text:visible:first").focus();
 	});
  </script>
-</html>
