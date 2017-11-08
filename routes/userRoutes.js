@@ -46,7 +46,11 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
       {
         model: db.Comments,
         order: [["createdAt", "DESC"]]
-      }]
+      },
+      {
+        model: db.Courses
+      }
+    ]
     })
     })
     .then((sessions) => {

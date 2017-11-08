@@ -1,11 +1,58 @@
+        {{!-- User Profile  --}}
+        <div id="userInfo" class="order-lg-1 text-center active">
+
+            <a id="slide" aria-expanded="true" aria-controls="userInfo"></a>
+
+            <div class="col-lg-12">
+                <img id="userAvatar" src=" {{user.user_avatar}} " class="rounded-circle" alt="">
+                <h5 id="userName" class="mb-3"> {{user.user_name}} </h5>
+            </div>
+
+            <div class="list-group panel">
+
+                <a href="#menu1" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+                    <i class="fa fa-dashboard"></i>
+                    <span class="hidden-sm-down">About</span>
+                </a>
+
+                <div id="menu1" class="collapse">
+                    <li class="list-group-item" data-parent="#menu2">
+                        <p> {{user.user_desc}} </p>
+                    </li>
+                </div>
+
+                <a href="#menu2" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+                    <i class="fa fa-dashboard"></i>
+                    <span class="hidden-sm-down">Contact</span>
+                </a>
+                <div id="menu2" class="collapse">
+                    <li class="list-group-item" data-parent="#menu2">
+                        <p> {{user.user_email}} </p>
+                    </li>
+                    <li class="list-group-item" data-parent="#menu2">
+                        <p> {{user.user_phone}} </p>
+                    </li>
+                </div>
+            </div>
+        </div>
+        {{!-- /#userInfo --}}
+
+  <div class="col-lg-9 panes order-lg-2">
+            {{!-- Pane tabs --}}
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active"><h1 class="courseID" data-id="{{CourseId}}"> {{course_name}} </h1></a>
+                </li>
+            </ul>
+
+<div>
 {{!-- Course Info --}}
-<h1 class="courseID" data-id=" {{CourseId}} "> {{course_name}} </h1>
 
-
+<div class="card-columns w-100">
 {{!-- Session Card --}}
 {{#unless instructor}}
 {{#each sessions}}
-    <div id=' {{id}} ' class="card sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
+    <div id="{{id}}" class="card text-white bg-dark sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
         <div class="card-header">
             <img class="icon" src=' {{subject_avatar}} '> {{subject}}
         </div>
@@ -22,8 +69,6 @@
         </div>
     </div>
 {{!-- /#sessionID --}}
-
-
 
     <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{id}}" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
@@ -401,3 +446,6 @@
       </div>
 {{/each}}
 {{/if}}
+</div>
+</div>
+  </div>

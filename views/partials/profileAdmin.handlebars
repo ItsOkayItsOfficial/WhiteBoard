@@ -89,16 +89,17 @@
                     {{/if}}
                 </div>
                 {{!-- /#profile --}}
+
                 {{!-- Courses Pane --}}
                 <div id="courses" class="tab-pane">
                     <h3>All Courses</h3>
+
                     <div class="row">
-
                         {{!-- Courese Enrolled in List --}}
-                        <div id="enrollment" class="col-md-10 card-deck">
-                            {{!-- From courses table --}} {{#each courses}}
-
-                            <div class="col-md-4 card text-white">
+                        <div id="enrollment" class="card-columns w-100">
+                            {{!-- From courses table --}}
+                            {{#each courses}}
+                            <div class="card p-3 text-white">
                                 <div class="card-header selectedCourse" href="{{course_url}}">
                                     <small> {{course_day}} | {{course_time}} </small>
                                 </div>
