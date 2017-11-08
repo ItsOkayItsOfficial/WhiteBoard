@@ -28,6 +28,13 @@ p.small {
   font-size: 0.8em;
 }
 
+.active {
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+
 #authenticatedUser {
   background: url("../images/photo_bg.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -39,7 +46,17 @@ p.small {
   color: white;
 }
 
+.btn-primary {
+  background-color: #18a7b7;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #00859b;
+}
+
 .card {
+  background-color: #ef9b1a;
   transition: all .2s ease-in-out;
 }
 
@@ -85,13 +102,6 @@ p.small {
   -o-animation-name: fadeInUp;
 }
 
-#login-header {
-  height: 75vh;
-  margin: -50px -50px 0 -50px;
-  overflow: hidden;
-  text-align: center;
-}
-
 .hero-left {
   background-color: red;
   height: 75vh;
@@ -130,23 +140,28 @@ p.small {
   visibility: visible;
 }
 
-.modal-content {
-  background: url('../../public/images/concrete-texture.png')
+#login {
+  margin-top: 0px;
+  border: 0;
+  border-radius: 2px;
+  color: white;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 0.7em;
+  letter-spacing: 1px;
+  background-color: #ef9b1a;
+  cursor: pointer;
+  outline: none;
 }
 
-.fadeInDown {
-  animation-name: fadeInDown;
-  -webkit-animation-name: fadeInDown;
-  -moz-animation-name: fadeInDown;
-  -o-animation-name: fadeInDown;
+#login-header {
+  height: 75vh;
+  margin: -50px -50px 0 -50px;
+  overflow: hidden;
+  text-align: center;
 }
 
-.fadeInDown {
-  animation-name: fadeInUp;
-  -webkit-animation-name: fadeInUp;
-  -moz-animation-name: fadeInUp;
-  -o-animation-name: fadeInUp;
-}
 
 #login-title {
   font-family: 'Permanent Marker', cursive;
@@ -159,21 +174,6 @@ p.small {
   text-align: center;
   position: relative;
   top: 0px;
-}
-
-#login {
-  margin-top: 0px;
-  border: 0;
-  border-radius: 2px;
-  color: white;
-  padding: 10px;
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 0.7em;
-  letter-spacing: 1px;
-  background-color: #e09b3a;
-  cursor: pointer;
-  outline: none;
 }
 
 .login-box {
@@ -235,9 +235,54 @@ p.small {
   -o-animation: 1s ease-in-out 2s;
 }
 
+.modal-content {
+  background: url('../../public/images/concrete-texture.png')
+}
+
 .modal-header {
   background-color: #17a2b8;
   color: #000000;
+}
+
+.nav-tabs {
+  border: none;
+  margin-bottom: 5px;
+}
+
+.nav-tabs .nav-link {
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 150;
+  font-size: 1em;
+  color: #ccc;
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+
+.nav-tabs .nav-link:hover {
+  border: none;
+}
+
+.nav-tabs .nav-link.active {
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 250;
+  font-size: 2em;
+  color: white;
+  background: none;
+  text-shadow: 0px 0px 10px black;
+  margin: 0 auto;
+  padding-top: 0px;
+  text-align: center;
+  position: relative;
+  top: 0px;
+  border: none;
+}
+
+.panes {
+  margin-left:auto;
+  margin-right:auto;
+  width:100%;
 }
 
 .row {
@@ -248,7 +293,11 @@ p.small {
 .tab-content {
   width: 100%;
   padding: 20px;
-  background-color:#333;
+  background-color: #333;
+  height: 450px;
+  overflow-x: hidden;
+  border-right: solid 5px #222;
+  margin-top: 20px;
 }
 
 .top {
