@@ -234,7 +234,7 @@ $('#submitNewCourse').on('click', function(e) {
         window.location.reload();
   }))
   });
-
+//When student enrolls in course
     $('.enrollCourse').on('click', function(e) {
       e.preventDefault();
       let courseId = $(this).attr('id');
