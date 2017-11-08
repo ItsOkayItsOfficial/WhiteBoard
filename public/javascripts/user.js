@@ -167,10 +167,11 @@ $('#submitNewCourse').on('click', function(e) {
 //On click when a user submits a rating
   $('.ratingSubmit').on('click', function(e) {
     e.preventDefault();
-
+    let rating = $("input[name='ratings']:checked").val();
+    console.log(rating);
       let newRating = {
         SessionId: $(this).attr('id'),
-        rating: $("#sessionRating" + $(this).attr('id')).val(),
+        rating,
         userName: usersLocalStorage.login,
       }
 

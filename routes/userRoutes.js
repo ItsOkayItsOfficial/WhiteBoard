@@ -288,7 +288,7 @@ router.post('/api/sessions/rating', function(req, res) {
     return db.Sessions.update(values, selector)
   })
   .then((result) => {
-    res.json('Rating submitted')
+    res.json("Rating submitted")
   })
 });
 });
