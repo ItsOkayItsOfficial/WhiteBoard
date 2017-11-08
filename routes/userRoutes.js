@@ -31,7 +31,6 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
     .then((result) => {
       hbsObject.userId = result.dataValues.id;
       hbsObject.instructor = result.dataValues.instructor;
-      console.log(hbsObject.instructor)
       // let userId = result.dataValues.id;
     return db.Sessions.findAll({
       where: {
@@ -107,6 +106,7 @@ router.get('/user/:username', function(req, res, next) {
     //sets user to the user that logged in
     user = result.dataValues;
     hbsObject.user = user;
+    hbsObject.instructor = result.dataValues.instructor;
     //returns the logged in users courses
     return db.Enrollment.findAll({
       where: {
@@ -118,7 +118,6 @@ router.get('/user/:username', function(req, res, next) {
     })
   })
   .then((result) => {
-    console.log(result);
     //loops through the query result to place each courses information into the courses array
     let courses = [];
     for (let i = 0; i < result.length; i++) {
@@ -155,7 +154,11 @@ router.get('/user/:username', function(req, res, next) {
     })
     .then((comments) => {
       hbsObject.comments = comments;
-    res.render('../views/partials/profileAdmin.handlebars', hbsObject)
+      return db.Courses.findAll({})
+    })
+    .then((allCourses) => {
+      hbsObject.allCourses = allCourses;
+      res.render('../views/partials/profileAdmin.handlebars', hbsObject)
     })
   .catch(next);
 });
@@ -196,7 +199,6 @@ router.post('/api/courses', function(req, res) {
       }
     })
     .then((result) => {
-      console.log(result);
       res.json('Successfully created course');
     })
   });
@@ -221,11 +223,9 @@ router.post('/api/sessions/resources', function(req, res) {
     .then((result) => {
       let userId = result.dataValues.id;
       let instructorStatus = null;
-      console.log(result.dataValues.instructor);
       if (result.dataValues.instructor === true) {
         instructorStatus = result.dataValues.instructor
       }
-      console.log(instructorStatus);
       //creates resource tied to a specific session
       return db.Resources.create({
         CourseId: req.body.courseId,
@@ -269,7 +269,6 @@ router.post('/api/sessions/rating', function(req, res) {
     })
   })
   .then((result) => {
-    console.log(result);
   //finds the average of all the ratings
   let allSessionRatings = [];
   let ratingSum = 0;
@@ -282,14 +281,13 @@ router.post('/api/sessions/rating', function(req, res) {
     return ratingSum/allSessionRatings.length;
   })
   .then((session_rating) => {
-    console.log(session_rating);
     //updates the average rating in the session table
     let values = { session_rating: session_rating };
     let selector = { where: { Id: req.body.SessionId }}
     return db.Sessions.update(values, selector)
   })
   .then((result) => {
-    res.json('Rating submitted')
+    res.json("Rating submitted")
   })
 });
 });
@@ -359,4 +357,23 @@ router.post('/api/sessions/sessionInfo', function(req, res) {
   res.json('Session updated');
 })
 });
+//when student enrolls
+router.post('/api/enrollment', function(req, res) {
+  return db.Users.findOne({
+    where: {
+      user_login: req.body.userName
+    }
+  })
+  .then((result) => {
+    let userId = result.dataValues.id;
+    return db.Enrollment.create({
+      CourseId: req.body.courseId,
+      UserId: userId
+    })
+  })
+  .then((result) => {
+    console.log(result);
+    res.json('Enrolled in course');
+  })
+})
 module.exports = router;
