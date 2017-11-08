@@ -1,35 +1,26 @@
 
-	<div class="container">
+<div class="container">
 		<div class="top">
 			<h1 id="login-title" class="hidden"><span id="logo"> Whiteboard </span></h1>
 		</div>
+
 		<br/><br/>
 
 		<div class="login-box animated fadeInUp">
 			<div class="box-header">
-				<h2>Log In</h2>
+				<h2>Login</h2>
 			</div>
-			<label for="username">Username</label>
-			<br/>
-			<input type="text" id="username">
-			<br/>
-			<label for="password">Password</label>
-			<br/>
-			<input type="password" id="password">
-			<form class="form-signin">
-       		 {{#if message}}
-	        <h2> {{message}} </h2>
-	        <button class="btn btn-lg btn-primary btn-block" id='authenticatedUser'>Sign in</button>
+
+			{{#if message}}
+	        <h3> {{message}} </h3>
+	        <button class="btn btn-lg btn-primary btn-block" id='authenticatedUser'>Continue</button>
 	        {{/if}}
 
 	        {{#unless message}}
-	        <h2 class="form-signin-heading"></h2>
-	        <button class="btn btn-lg btn-primary btn-block" id='login'>Sign in</button>
-	      </form>
+			<h2 class="form-signin-heading"></h2>
+	        <input id="login" type="image" src="public/images/GitHub_Logo.jpg">
+	      	</form>
         	{{/unless}}
-
-        <br/>
-			<a href="https://github.com/password_reset"><p class="small">Forgot your password?</p></a>
 		</div>
 </div>
 

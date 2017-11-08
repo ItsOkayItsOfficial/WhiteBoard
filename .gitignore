@@ -9,6 +9,9 @@
 *.userosscache
 *.sln.docstates
 config/
+partials_test/
+login.css
+animate.css
 
 # Node & NPM
 node_modules/

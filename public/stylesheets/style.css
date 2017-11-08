@@ -141,17 +141,17 @@ p.small {
 }
 
 #login {
-  margin-top: 0px;
+  margin: 0px;
+  margin-bottom: -6px;
   border: 0;
-  border-radius: 2px;
   color: white;
-  padding: 10px;
+  padding: 10px 0px 0px 0px;
   text-transform: uppercase;
   font-weight: 400;
   font-size: 0.7em;
   letter-spacing: 1px;
-  background-color: #ef9b1a;
   cursor: pointer;
+  height: 125px;
   outline: none;
 }
 
@@ -161,7 +161,6 @@ p.small {
   overflow: hidden;
   text-align: center;
 }
-
 
 #login-title {
   font-family: 'Permanent Marker', cursive;
@@ -182,7 +181,6 @@ p.small {
   margin: 0 auto;
   position: relative;
   top: 25px;
-  padding-bottom: 15px;
   border-radius: 5px;
   box-shadow: 0 5px 50px rgba(0, 0, 0, 0.7);
   text-align: center;
@@ -385,6 +383,16 @@ p.small {
   visibility: visible;
 }
 
+/* Subject Colors */
+.javascript {
+  background-color: yellow;
+}
+
+.html {
+  background-color: orange;
+}
+
+/* Keyframes */
 @keyframes fadeInDown {
   from {
     opacity: 0;

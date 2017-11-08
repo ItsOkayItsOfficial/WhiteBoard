@@ -7,8 +7,8 @@
 
       <div class="col-lg-12">
         <a href="/user/{{user.user_name}}">
-        <img id="userAvatar" src=" {{user.user_avatar}} " class="rounded-circle" alt="">
-               </a>
+          <img id="userAvatar" src=" {{user.user_avatar}} " class="rounded-circle" alt="">
+        </a>
         <h5 id="userName" class="mb-3"> {{user.user_name}} </h5>
       </div>
 
@@ -50,12 +50,11 @@
 
       {{!-- Session Card --}}
       <div class="card-columns w-100">
-        {{#unless instructor}}
-        {{#each sessions}}
 
-        <div id="{{id}}" class="card text-white bg-dark sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
+        {{#unless instructor}} {{#each sessions}}
+        <div id="{{id}}" class="card text-white sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
 
-          <div class="card-header">
+          <div class="card-header {{session_subject}}">
             <img class="icon" src=' {{subject_avatar}} '> {{subject}}
           </div>
 
@@ -152,9 +151,12 @@
                       </ul>
                     </div>
                   </div>
-                  {{/if}} {{/each}}
+                  {{/if}}
+                  {{/each}}
+
                   <h4> Student Resources </h4>
-                  {{#each Resources}} {{#unless instructor}}
+                  {{#each Resources}}
+                  {{#unless instructor}}
                   <div class="row">
                     <div class="col-sm-1">
                       <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
@@ -171,8 +173,11 @@
                       </ul>
                     </div>
                   </div>
-                  {{/unless}} {{/each}} {{/if}}
+                  {{/unless}}
+                  {{/each}}
+                  {{/if}}
                   <br>
+
                   <div class="row">
                     {{#unless Ratings}}
                     <form>
@@ -240,15 +245,22 @@
                   </div>
                   {{/each}}
 
+                                  </div>
+              </div>
+
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   </div>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
-        {{/each}} {{/unless}} {{!--Instructor View --}} {{#if instructor}} {{#each sessions}}
+        {{/each}}
+        {{/unless}}
+
+        {{!--Instructor View --}}
+        {{#if instructor}}
+        {{#each sessions}}
         <div id={{id}} class="card sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
           <div class="card-header">
             <img class="icon" src=' {{subject_avatar}} '> {{subject}}
@@ -266,20 +278,33 @@
           </div>
         </div>
 
+      <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{id}}" aria-hidden="true" data-backdrop="static">
 
-
-
-        <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{id}}" aria-hidden="true" data-backdrop="static">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-              <div class="modal-header row">
+
+              {{!-- Modal header --}}
+              <div class="modal-header">
                 {{#unless session_name}}
                 <div class='col-md-6'>
                   <input class="form-control" type="text" placeholder="Session Title" id="sessionTitle{{id}}">
                 </div>
-                {{/unless}} {{#if session_name}}
+                {{/unless}}
+
+                {{#unless session_subject}}
+                <div class='col-md-3'>
+                  <input class="form-control" type="text" placeholder="Session subject">
+                </div>
+                {{/unless}}
+
+                {{#if session_name}}
                 <div class='col-md-6'>
                   <h4 class="modal-title">{{session_name}}</h4>
+                  {{#if session_subject}}
+                  <div class='col-md-6'>
+                    <small class="modal-header">{{session_subject}}</small>
+                  </div>
+                  {{/if}}
                   <hr>
                   <p class="modal-subtitle text-muted">Date & Time: {{session_date}} {{course_time}} </p>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -288,22 +313,30 @@
                 </div>
                 {{/if}}
               </div>
+              {{!-- /.modal-header --}}
 
-
+              {{!-- Modal body --}}
               <div class="modal-body">
                 <div class="container-fluid">
+                  {{!-- Session desc --}}
                   <div class="row">
                     <div class="col-md-12">
+
                       {{#unless session_desc}}
                       <div class="form-group">
                         <textarea class="form-control" rows="3" placeholder="Session Description" id="sessionDesc{{id}}"></textarea>
                         <button type="submit" id="{{id}}" class="btn btn-info btn-sm sessionDescSubmit">Add</button>
                       </div>
-                      {{/unless}} {{#if session_desc}}
+                      {{/unless}}
+
+                      {{#if session_desc}}
                       <p> {{session_desc}} </p>
                       {{/if}}
                     </div>
                   </div>
+                  {{!-- /.row --}}
+
+                  {{!-- Session activities --}}
                   <div class="row">
                     <div class="col-md-6">
                       <h6>
@@ -330,46 +363,59 @@
                       </form>
                     </div>
                   </div>
-                  <br> {{#if Resources}}
-                  <h4> Instructor Resources </h4>
-                  {{#each Resources}} {{#if instructor}}
-                  <div class="row">
-                    <div class="col-sm-1">
-                      <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
-                        <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
-                      </button>
-                    </div>
-                    <div class="col-md-11">
-                      <ul>
-                        <li>
-                          <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
-                          <div>{{resource_desc}}</div>
-                          <div>Posted by: {{user_login}} at {{createdAt}}</div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  {{/if}} {{/each}}
-                  <h4> Student Resources </h4>
-                  {{#each Resources}} {{#unless instructor}}
-                  <div class="row">
-                    <div class="col-sm-1">
-                      <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
-                        <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
-                      </button>
-                    </div>
-                    <div class="col-md-11">
-                      <ul>
-                        <li>
-                          <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
-                          <div>{{resource_desc}}</div>
-                          <div>Posted by: {{user_login}} at {{createdAt}}</div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  {{/unless}} {{/each}} {{/if}}
+                  {{!-- /.row --}}
                   <br>
+
+                  {{#if Resources}}
+                  <h4> Instructor Resources </h4>
+
+                  {{#each Resources}}
+                  {{#if instructor}}
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
+                        <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="col-md-11">
+                      <ul>
+                        <li>
+                          <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
+                          <div>{{resource_desc}}</div>
+                          <div>Posted by: {{user_login}} at {{createdAt}}</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  {{/if}}
+                  {{/each}}
+
+                  <h4> Student Resources </h4>
+                  {{#each Resources}}
+                  {{#unless instructor}}
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
+                        <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="col-md-11">
+                      <ul>
+                        <li>
+                          <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
+                          <div>{{resource_desc}}</div>
+                          <div>Posted by: {{user_login}} at {{createdAt}}</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  {{/unless}}
+                  {{/each}}
+                  {{/if}}
+
+                  <br>
+
+                  {{!-- Ratings row --}}
                   <div class="row">
                     {{#unless Ratings}}
                     <form>
@@ -403,9 +449,15 @@
                         <button type="submit" id="{{id}}" class="ratingSubmit btn btn-info btn-sm">Submit</button>
                       </div>
                     </form>
-                    {{/unless}} {{#if Ratings}}
-                    <p> You rated this session a {{session_rating}}. {{/if}}
+                    {{/unless}}
+
+                    {{#if Ratings}}
+                    <p> You rated this session a {{session_rating}}.
+                    {{/if}}
+
                   </div>
+                  {{!-- /.row --}}
+
                   <div class='row'>
                     <div class='col-md-12'>
                       <div class="form-group">
@@ -414,11 +466,14 @@
                       </div>
                     </div>
                   </div>
+
                   <div class='row'>
                     <div class='col-md-3'>
                       <button type="button" class="btn btn-info btn-sm commentSubmit" data-session-id="{{id}}">Comment</button>
                     </div>
                   </div>
+
+                  {{!-- Comments --}}
                   {{#each Comments}}
                   <div class="row commentRow">
                     <table>
@@ -436,16 +491,22 @@
                     </table>
                   </div>
                   {{/each}}
+                  {{!-- /.commentRow --}}
 
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
                 </div>
-              </div>
+                {{!-- /.container-fluid --}}
+                </div>
+                {{!-- /.modal-body --}}
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
           </div>
         </div>
-        {{/each}} {{/if}}
+        {{/each}}
+        {{/if}}
+
       </div>
       {{!-- /.card-columns --}}
     </div>
