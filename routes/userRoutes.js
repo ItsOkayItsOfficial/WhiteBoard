@@ -139,7 +139,7 @@ router.get('/user/:username', function(req, res, next) {
       },
       {
         model: db.Courses
-      }, 
+      },
       {
         model: db.Resources
       }]
@@ -196,6 +196,7 @@ router.post('/api/courses', function(req, res) {
       }
     })
     .then((result) => {
+      console.log(result);
       res.json('Successfully created course');
     })
   });
