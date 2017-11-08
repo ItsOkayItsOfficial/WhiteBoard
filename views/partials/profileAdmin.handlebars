@@ -126,11 +126,12 @@
 
                         {{!-- Courese Enrolled in List --}}
                         <div id="enrollment" class="col-md-10 card-deck">
-                            {{!-- From courses table --}} {{#each allCourses}}
+                            {{!-- From courses table --}}
+                            {{#each allCourses}}
 
                             <div class="col-md-4 card text-white">
-                                <div class="card-header selectedCourse" href="{{course_url}}">
-                                    <small> {{course_day}} | {{course_time}} </small>
+                                <div class="card-header selectedCourse">
+                                    <small> {{course_time}} </small>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title"> {{course_name}} </h4>
