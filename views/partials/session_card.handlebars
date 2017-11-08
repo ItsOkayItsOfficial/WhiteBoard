@@ -1,9 +1,11 @@
-{{!-- Session Card --}}
+{{!-- Course Info --}}
+<h1 class="courseID" data-id=" {{CourseId}} "> {{course_name}} </h1>
 
-<h1 class= "courseId" data-id={{CourseId}}>{{course_name}}</h1>
+
+{{!-- Session Card --}}
 {{#unless instructor}}
 {{#each sessions}}
-    <div id={{id}} class="card sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
+    <div id=' {{id}} ' class="card sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
         <div class="card-header">
             <img class="icon" src=' {{subject_avatar}} '> {{subject}}
         </div>
@@ -19,7 +21,7 @@
             <small class="text-muted">Resources ({{Resources.length}}) </small>
         </div>
     </div>
-
+{{!-- /#sessionID --}}
 
 
 
