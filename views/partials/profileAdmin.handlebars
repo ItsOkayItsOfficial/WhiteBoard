@@ -40,7 +40,7 @@
         </div>
         {{!-- /#userInfo --}}
 
-        <div class="col-lg-8 order-lg-2">
+        <div class="col-lg-9 order-lg-2">
             {{!-- Pane tabs --}}
             <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -51,29 +51,34 @@
                 </li>
             </ul>
 
-            <div class="tab-content py-4">
+            <div class="tab-content py-6">
                 {{!-- Profile Pane --}}
                 <div id="profile" class="tab-pane active">
 
                     <div class="row">
 
                         {{!-- Courese Enrolled in List --}}
-                        <div id="enrollment" class="col-md-6">
+                        <div id="enrollment" class="card-deck">
                             <h3>All Courses</h3>
-                            {{!-- From courses table --}} {{#each courses}}
-                            <a class="selectedCourse" id="{{id}}" href="{{course_url}}">
-                                <p id="{{id}}"> {{course_name}} </p>
-                            </a>
-                            <p> {{course_day}} | {{course_time}} </p>
-                            <p> {{course_desc}} </p>
+                            {{!-- From courses table --}}
+                            {{#each courses}}
+
+                            <div class="card text-white bg-warning">
+                                <div class="card-header selectedCourse" href="{{course_url}}">
+                                    <p> {{course_day}} | {{course_time}} </p>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"> {{course_name}} </h4>
+                                    <p class="card-text"> {{course_desc}} </p>
+                                    <a href="{{course_url}}" class="btn btn-primary">Course Sessions</a>
+                                </div>
+                            </div>
+
                             {{/each}}
                         </div>
                         {{!-- /#enrollment --}}
                     </div>
-                    {{!-- /row --}}
-
-                    {{!-- Resources Starred and Added List --}}
-                {{#if Resources}}
+                    {{!-- /row --}} {{!-- Resources Starred and Added List --}} {{#if Resources}}
                     <div id="resources" class="col-md-12">
                         <h5 class="mt-2">
                             <span class="fa fa-clock-o ion-clock float-right"></span>Starred Resources</h5>
@@ -101,9 +106,7 @@
                     </div>
                     {{/if}}
                 </div>
-                {{!-- /#profile --}}
-
-                {{!-- Messages Pane --}}
+                {{!-- /#profile --}} {{!-- Messages Pane --}}
                 <div id="messages" class="tab-pane">
                     <div class="alert alert-info alert-dismissable">
                         <a class="panel-close close" data-dismiss="alert">×</a> This is an
@@ -121,9 +124,7 @@
                     </table>
 
                 </div>
-                {{!-- /#messages --}}
-
-                {{!-- Edit Pane --}}
+                {{!-- /#messages --}} {{!-- Edit Pane --}}
                 <div class="tab-pane" id="edit">
                     <form role="form">
                         <div class="form-group row">
