@@ -6,3 +6,6 @@
 * URL:  github.com/itsokayitsofficial/project2
 */
 
+$('#slide').on('click', function () {
+    $('#userInfo').toggleClass('active');
+});

@@ -29,6 +29,7 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
       }
     })
     .then((result) => {
+      hbsObject.user = result.dataValues;
       hbsObject.userId = result.dataValues.id;
       hbsObject.instructor = result.dataValues.instructor;
       // let userId = result.dataValues.id;
@@ -54,6 +55,7 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
     })
     })
     .then((sessions) => {
+      hbsObject.course_name = sessions[0].Course.course_name;
       hbsObject.sessions = sessions;
       //if user has already given a rating for the session, they cannot rate again
       for (let i = 0; i < sessions.length; i++) {
