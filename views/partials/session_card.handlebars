@@ -255,7 +255,7 @@
               <div class="modal-header text-white">
                 {{#unless session_name}}
                 <div class='col-md-6'>
-                  <input class="form-control" type="text" placeholder="Session Title" id="sessionTitle{{id}}">
+                    <h4 class="modal-title"> Session Title </h4>
                 </div>
                 {{/unless}}
 
@@ -278,6 +278,9 @@
 
                   <div class="row">
                     <div class="col-md-12">
+                      {{#unless session_desc}}
+                      <p> Session Description </p>
+                      {{/unless}}
                       {{#if session_desc}}
                       <p> {{session_desc}} </p>
                       {{/if}}

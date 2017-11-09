@@ -11,6 +11,7 @@ const db = require('./models');
 // Express - Initialize
 const app = express();
 
+app.options("*", cors());
 app.use(cors());
 // Express - Static routes
 app.use("/public", express.static(__dirname + '/public'));
@@ -31,6 +32,24 @@ app.engine("handlebars", exphbs({
   defaultLayout: "main"
 }));
 
+app.use(function(req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader("Access-Control-Allow-Origin", "https://peaceful-garden-23465.herokuapp.com/");
+
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+  // Pass to next layer of middleware
+  next();
+});
 
 // Express - Handlebars
 app.use(routes);
