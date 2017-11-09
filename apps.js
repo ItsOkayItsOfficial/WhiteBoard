@@ -1,5 +1,6 @@
 // Variables - Dependencies & Reqs
 const express = require("express");
+var cors = require('cors');
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
 let routes = require('./routes/userRoutes');
@@ -10,7 +11,18 @@ const db = require('./models');
 // Express - Initialize
 const app = express();
 
-// Express - Static routex
+// Express - CORS
+app.use(cors())
+
+app.get('/products/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
+
+app.listen(80, function () {
+  console.log('CORS-enabled web server listening on port 80')
+})
+
+// Express - Static routes
 app.use("/public", express.static(__dirname + '/public'));
 
 // Express - Body-parser
