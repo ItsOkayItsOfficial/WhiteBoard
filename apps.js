@@ -11,6 +11,7 @@ const db = require('./models');
 // Express - Initialize
 const app = express();
 
+app.use(cors());
 // Express - Static routes
 app.use("/public", express.static(__dirname + '/public'));
 
