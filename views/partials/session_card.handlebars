@@ -81,11 +81,6 @@
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header text-white">
-                {{#unless session_name}}
-                <div class='col-md-6'>
-                  <input class="form-control" type="text" placeholder="Session Title" id="sessionTitle{{id}}">
-                </div>
-                {{/unless}}
 
                 {{#if session_name}}
                 <div class='col-md-6'>
@@ -103,15 +98,6 @@
 
                   <div class="row">
                     <div class="col-md-12">
-                                            <h6>
-                        Session Description
-                      </h6>
-                      {{#unless session_desc}}
-                      <div class="form-group">
-                        <textarea class="form-control" rows="3" placeholder="Session Description" id="sessionDesc{{id}}"></textarea>
-                        <button type="submit" id="{{id}}" class="btn btn-info btn-sm sessionDescSubmit">Add</button>
-                      </div>
-                      {{/unless}}
 
                       {{#if session_desc}}
                       <p> {{session_desc}} </p>
@@ -281,69 +267,61 @@
         {{/unless}}
 
         {{!--Instructor View --}}
-        {{#if instructor}}
+         {{#if instructor}}
         {{#each sessions}}
-        <div id={{id}} class="card sessionCard" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
-          <div class="card-header">
-            <img class="icon" src=' {{subject_avatar}} '> {{subject}}
-          </div>
+        <div id="{{id}}" class="card sessionCard text-white" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
+
+          <div class="card-header {{session_subject}}">
+
+                          <h4 class="card-title"> {{session_name}} </h4>
+
+                                    <small class="card-subtitle mb-2 text-muted">Date: {{session_date}} </small>
+
+{{subject}}
+                        </div>
 
           <div class="card-block">
-            <h4 class="card-title"> {{session_name}} </h4>
-            <p class="card-subtitle mb-2 text-muted">Date: {{session_date}} | Rating: {{session_rating}} </p>
             <p class="card-text"> {{session_desc}} </p>
           </div>
 
           <div class="card-footer">
             <small class="text-muted">Comments ({{Comments.length}}) </small>
             <small class="text-muted">Resources ({{Resources.length}}) </small>
+            <small class="text-muted">Rating ({{session_rating}}) </small>
           </div>
         </div>
+        {{!-- /#sessionID --}}
 
-      <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{id}}" aria-hidden="true" data-backdrop="static">
+        <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{id}}" aria-hidden="true" data-backdrop="static">
 
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-
-              {{!-- Modal header --}}
-              <div class="modal-header">
+              <div class="modal-header text-white">
                 {{#unless session_name}}
                 <div class='col-md-6'>
                   <input class="form-control" type="text" placeholder="Session Title" id="sessionTitle{{id}}">
                 </div>
                 {{/unless}}
 
-                {{#unless session_subject}}
-                <div class='col-md-3'>
-                  <input class="form-control" type="text" placeholder="Session subject">
-                </div>
-                {{/unless}}
-
                 {{#if session_name}}
                 <div class='col-md-6'>
-                  <h4 class="modal-title">{{session_name}}</h4>
-                  {{#if session_subject}}
-                  <div class='col-md-6'>
-                    <small class="modal-header">{{session_subject}}</small>
-                  </div>
-                  {{/if}}
-                  <hr>
-                  <p class="modal-subtitle text-muted">Date & Time: {{session_date}} {{course_time}} </p>
+                  <p class="modal-subtitle text-muted">{{session_date}} | {{course_time}} </p>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 {{/if}}
               </div>
-              {{!-- /.modal-header --}}
 
-              {{!-- Modal body --}}
-              <div class="modal-body">
+
+              <div class="modal-body text-dark">
                 <div class="container-fluid">
-                  {{!-- Session desc --}}
+
                   <div class="row">
                     <div class="col-md-12">
-
+                                            <h6>
+                        Session Description
+                      </h6>
                       {{#unless session_desc}}
                       <div class="form-group">
                         <textarea class="form-control" rows="3" placeholder="Session Description" id="sessionDesc{{id}}"></textarea>
@@ -356,26 +334,24 @@
                       {{/if}}
                     </div>
                   </div>
-                  {{!-- /.row --}}
+                  <hr>
 
-                  {{!-- Session activities --}}
                   <div class="row">
                     <div class="col-md-6">
                       <h6>
-                        <b>Session Activities</b>
+                        Activities
                       </h6>
                       <div class="form-group">
                         <textarea class="form-control form-control-sm" rows="1" id="activity{{id}}"></textarea>
                         <button type="submit" class="btn btn-info btn-sm activityAddSubmit">Add</button>
                       </div>
                     </div>
+
                     <div class="col-md-6">
                       <form>
                         <div class="form-group">
                           <label for="resourceText">
-                            <h6>
-                              <b>Resource</b>
-                            </h6>
+                            <h6>Resources</h6>
                           </label>
                           <input type="text" class="form-control form-control-sm" id="resourceTitle{{id}}" placeholder="Resource Title">
                           <input type="text" class="form-control form-control-sm" id="resourceUrl{{id}}" placeholder="Resource URL">
@@ -385,14 +361,12 @@
                       </form>
                     </div>
                   </div>
-                  {{!-- /.row --}}
+                  <hr>
                   <br>
 
                   {{#if Resources}}
                   <h4> Instructor Resources </h4>
-
-                  {{#each Resources}}
-                  {{#if instructor}}
+                  {{#each Resources}} {{#if instructor}}
                   <div class="row">
                     <div class="col-sm-1">
                       <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
@@ -434,51 +408,7 @@
                   {{/unless}}
                   {{/each}}
                   {{/if}}
-
                   <br>
-
-                  {{!-- Ratings row --}}
-                  <div class="row">
-                    {{#unless Ratings}}
-                    <form>
-                      <div class="form-group">
-                        <label for="resourceText">Rate this session</label>
-                        <div class="form-check form-check-inline">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio1" value="1"> 1
-                          </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio2" value="2"> 2
-                          </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio3" value="3"> 3
-                          </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio4" value="4"> 4
-                          </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio5" value="5"> 5
-                          </label>
-                        </div>
-                        <button type="submit" id="{{id}}" class="ratingSubmit btn btn-info btn-sm">Submit</button>
-                      </div>
-                    </form>
-                    {{/unless}}
-
-                    {{#if Ratings}}
-                    <p> You rated this session a {{session_rating}}.
-                    {{/if}}
-
-                  </div>
-                  {{!-- /.row --}}
 
                   <div class='row'>
                     <div class='col-md-12'>
@@ -488,14 +418,12 @@
                       </div>
                     </div>
                   </div>
-
                   <div class='row'>
                     <div class='col-md-3'>
                       <button type="button" class="btn btn-info btn-sm commentSubmit" data-session-id="{{id}}">Comment</button>
                     </div>
                   </div>
 
-                  {{!-- Comments --}}
                   {{#each Comments}}
                   <div class="row commentRow">
                     <table>
@@ -511,21 +439,22 @@
                         </td>
                       </tr>
                     </table>
-                  </div>
-                  {{/each}}
-                  {{!-- /.commentRow --}}
-
                 </div>
-                {{!-- /.container-fluid --}}
-                </div>
-                {{!-- /.modal-body --}}
+                {{/each}}
 
-                <div class="modal-footer">
+              </div>
+              </div>
+
+                  <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+                  </div>
+
             </div>
+            {{!-- /.modal-content --}}
           </div>
+          {{!-- /.modal-dialog --}}
         </div>
+        {{!-- /#session{{id}} --}}
         {{/each}}
         {{/if}}
 
