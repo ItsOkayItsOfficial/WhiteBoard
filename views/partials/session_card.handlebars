@@ -78,10 +78,17 @@
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header text-white">
-
+              {{#unless session_name}}
+                <div class='col-md-6'>
+                 <input class="form-control" type="text" placeholder="Session Title" id="sessionTitle{{id}}">
+                </div>
+               {{/unless}}
                 {{#if session_name}}
                 <div class='col-md-6'>
-                  <p class="modal-subtitle text-muted">{{session_date}} | {{course_time}} </p>
+                    <h4 class="modal-title"> {{session_name}} </h4>
+
+                    <small class="modal-subtitle mb-2 text-muted">Date: {{session_date}} </small>
+
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -95,7 +102,12 @@
 
                   <div class="row">
                     <div class="col-md-12">
-
+                    {{#unless session_desc}}
+                    <div class="form-group">
+                      <textarea class="form-control" rows="3" placeholder="Session Description" id="sessionDesc{{id}}"></textarea>
+                      <button type="submit" id="{{id}}" class="btn btn-info btn-sm sessionDescSubmit">Add</button>
+                    </div>
+                    {{/unless}}
                       {{#if session_desc}}
                       <p> {{session_desc}} </p>
                       {{/if}}
