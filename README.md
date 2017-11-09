@@ -1,6 +1,4 @@
-<img height="50px" src="public/images/logo.png">
-
-# Whiteboard
+# Whiteboard <img height="100px" src="public/images/logo.png">
 ### BootcampSpot Dynamic Syllabus
 “A better spot for bootcamp”
 
