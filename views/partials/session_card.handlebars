@@ -51,7 +51,7 @@
       {{!-- Session Card --}}
       <div class="card-columns w-100">
 
-        {{#unless instructor}}
+        {{#if instructor}}
         {{#each sessions}}
         <div id="{{id}}" class="card sessionCard text-white" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
 
@@ -264,7 +264,7 @@
         </div>
         {{!-- /#session{{id}} --}}
         {{/each}}
-        {{/unless}}
+        {{/if}}
 
         {{!--Instructor View --}}
          {{#unless instructor}}
