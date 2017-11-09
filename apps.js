@@ -34,7 +34,7 @@ app.engine("handlebars", exphbs({
 
 app.use(function(req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "https://peaceful-garden-23465.herokuapp.com/");
+  res.setHeader("Access-Control-Allow-Origin", "*");
 
   // Request methods you wish to allow
   res.setHeader(
